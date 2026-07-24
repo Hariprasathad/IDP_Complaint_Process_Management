@@ -1,26 +1,30 @@
-import InlineError from './InlineError.jsx';
+import React from 'react';
 
-export default function RadioGroup({ label, name, required = false, register, error, options = [] }) {
+const RadioGroup = ({ options, selectedValue, onChange, name, error }) => {
   return (
-    <fieldset>
-      <legend className="text-sm font-semibold text-gray-900 mb-3">
-        {label}
-        {required && <span className="text-red-600 ml-1">*</span>}
-      </legend>
-      <div className="space-y-3">
-        {options.map((opt) => (
-          <label key={opt.value} className="flex items-center gap-3 cursor-pointer">
-            <input
-              type="radio"
-              value={opt.value}
-              {...register}
-              className="w-4 h-4 text-brand-blue border-grey-border focus:ring-brand-blue"
-            />
-            <span className="text-sm text-gray-700">{opt.label}</span>
+    <div className="w-full">
+      <div className="space-y-4">
+        {options.map((option) => (
+          <label key={option.value} className="flex items-start cursor-pointer group">
+            <div className="flex items-center h-5">
+              <input
+                type="radio"
+                name={name}
+                value={option.value}
+                checked={selectedValue === option.value}
+                onChange={onChange}
+                className="w-5 h-5 text-blue-600 border-gray-400 focus:ring-blue-500 bg-white"
+              />
+            </div>
+            <div className="ml-3 text-gray-700">
+              {option.label}
+            </div>
           </label>
         ))}
       </div>
-      <InlineError message={error?.message} />
-    </fieldset>
+      {error && <p className="mt-2 text-sm text-red-500">{error}</p>}
+    </div>
   );
-}
+};
+
+export default RadioGroup;

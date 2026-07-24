@@ -1,15 +1,13 @@
-import PageLayout from './components/layout/PageLayout.jsx';
-import WizardShell from './components/wizard/WizardShell.jsx';
-import { useAutosave } from './hooks/useAutosave.js';
-import { useBeforeUnload } from './hooks/useBeforeUnload.js';
+import React from 'react';
+import PageLayout from './components/layout/PageLayout';
+import WizardShell from './components/wizard/WizardShell';
 
-export default function App() {
-  useAutosave();
-  useBeforeUnload();
-
+function App() {
   return (
     <PageLayout>
       <WizardShell />
     </PageLayout>
   );
 }
+
+export default App;

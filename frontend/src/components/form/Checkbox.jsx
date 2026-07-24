@@ -1,17 +1,21 @@
-import InlineError from './InlineError.jsx';
+import React from 'react';
 
-export default function Checkbox({ label, name, register, error }) {
+const Checkbox = ({ label, checked, onChange, name, error }) => {
   return (
-    <div>
-      <label className="flex items-start gap-3 cursor-pointer">
+    <div className="mb-3 w-full">
+      <label className="flex items-center cursor-pointer">
         <input
           type="checkbox"
-          {...register}
-          className="mt-0.5 w-4 h-4 rounded border-grey-border text-brand-blue focus:ring-brand-blue"
+          name={name}
+          checked={checked}
+          onChange={onChange}
+          className="form-checkbox h-5 w-5 text-blue-600 border-gray-400 rounded focus:ring-blue-500 focus:ring-2 focus:outline-none"
         />
-        <span className="text-sm text-gray-700">{label}</span>
+        <span className="ml-3 text-gray-700">{label}</span>
       </label>
-      <InlineError message={error?.message} />
+      {error && <p className="mt-1 text-sm text-red-500 ml-8">{error}</p>}
     </div>
   );
-}
+};
+
+export default Checkbox;

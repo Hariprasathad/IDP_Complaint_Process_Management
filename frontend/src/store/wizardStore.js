@@ -3,33 +3,44 @@ import { create } from 'zustand';
 const initialState = {
   currentStep: 1,
   isSubmitting: false,
-  submissionError: null,
   complaintId: null,
-  step1: { description: '', attachments: [] },
-  step2: { country: '', office: '', otherSpecify: '' },
-  step3: { personType: '', otherSpecify: '' },
-  step4: {
-    contactPreference: '',
-    fullName: '',
-    email: '',
-    countryCode: '',
-    phone: '',
-    currentCountry: '',
-    studyDestinations: [],
-    privacyAccepted: false,
-  },
+  step1: {},
+  step2: {},
+  step3: {},
+  step4: {}
 };
 
-const useWizardStore = create((set) => ({
+const useWizardStore = create((set, get) => ({
   ...initialState,
-  goNext: () => set((state) => ({ currentStep: state.currentStep + 1 })),
-  goPrevious: () => set((state) => ({ currentStep: Math.max(1, state.currentStep - 1) })),
-  setStepData: (step, data) => set((state) => ({ [step]: { ...state[step], ...data } })),
-  setSubmitting: (val) => set({ isSubmitting: val }),
-  setError: (msg) => set({ submissionError: msg }),
-  setComplaintId: (id) => set({ complaintId: id }),
-  setConfirmed: () => set({ currentStep: 'confirmed' }),
-  reset: () => set(initialState),
+
+  goNext: () => set((state) => {
+    if (state.currentStep < 4) {
+      return { currentStep: state.currentStep + 1 };
+    }
+    return state;
+  }),
+
+  goPrevious: () => set((state) => {
+    if (state.currentStep > 1) {
+      return { currentStep: state.currentStep - 1 };
+    }
+    return state;
+  }),
+
+  submitForm: () => set({ currentStep: 5 }),
+
+  setStepData: (stepNumber, data) => set((state) => ({
+    [`step${stepNumber}`]: {
+      ...state[`step${stepNumber}`],
+      ...data
+    }
+  })),
+
+  setSubmitting: (isSubmitting) => set({ isSubmitting }),
+  
+  setComplaintId: (complaintId) => set({ complaintId }),
+
+  reset: () => set(initialState)
 }));
 
 export default useWizardStore;

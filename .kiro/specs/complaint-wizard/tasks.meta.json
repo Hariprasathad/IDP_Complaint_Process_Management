@@ -1,0 +1,1341 @@
+{
+  "pbtResults": {},
+  "executionHistory": {
+    "Create `frontend/` directory with Vite + React (JavaScript) template": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818583815
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818624367
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818878705
+      }
+    ],
+    "Install dependencies: react, react-dom, react-hook-form, zustand, yup, @hookform/resolvers, tailwindcss, postcss, autoprefixer": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818587398
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818890415
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784819041099
+      }
+    ],
+    "Configure Tailwind CSS (`tailwind.config.js`, base styles)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818587733
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784819051555
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784819266515
+      }
+    ],
+    "Configure Vite (`vite.config.js` with proxy to backend for dev)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818587906
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784819272045
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784819333691
+      }
+    ],
+    "Create `index.html` with basic meta tags and viewport": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818588087
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784819342484
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784819409968
+      }
+    ],
+    "Verify: `npm run dev` starts without errors, blank page renders": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818588246
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784819415937
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784819505431
+      }
+    ],
+    "Create `backend/` directory with Express (JavaScript) setup": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818588355
+      },
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784819512061
+      }
+    ],
+    "Install dependencies: express, cors, helmet, express-rate-limit, multer, @aws-sdk/client-dynamodb, @aws-sdk/lib-dynamodb, @aws-sdk/client-s3, @aws-sdk/client-ses, nanoid, yup, dotenv, file-type, uuid": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818588455
+      },
+      {
+        "executionId": "ea2484a6-4bc1-4081-9d53-610069d8dffe",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784822840419
+      },
+      {
+        "executionId": "ea2484a6-4bc1-4081-9d53-610069d8dffe",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784824821538
+      }
+    ],
+    "Create `src/app.js` with Express app, CORS, helmet, JSON parsing": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818588616
+      },
+      {
+        "executionId": "ea2484a6-4bc1-4081-9d53-610069d8dffe",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784824837307
+      },
+      {
+        "executionId": "ea2484a6-4bc1-4081-9d53-610069d8dffe",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784824928675
+      }
+    ],
+    "Create `src/config/index.js` with environment variable loading": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818588737
+      },
+      {
+        "executionId": "ea2484a6-4bc1-4081-9d53-610069d8dffe",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784824940520
+      }
+    ],
+    "Create `.env.example` with all required env vars documented": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818588854
+      }
+    ],
+    "Verify: `npm start` starts server on configured port, returns 200 on health endpoint": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818588950
+      }
+    ],
+    "Create `shared/validation/schemas.js` with Yup schemas for all 4 steps": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818589049
+      }
+    ],
+    "Create `shared/validation/messages.js` with all validation message constants": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818589136
+      }
+    ],
+    "Ensure schemas are importable from both frontend and backend (configure package.json or path aliases)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818589311
+      }
+    ],
+    "Verify: schemas validate correct and incorrect data as expected": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818589512
+      }
+    ],
+    "Create `backend/src/db/dynamoClient.js` — DynamoDB DocumentClient initialization": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818589602
+      }
+    ],
+    "Document table creation (CloudFormation/CDK script or manual instructions):": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818589709
+      }
+    ],
+    "Create helper functions for common operations (putItem, getItem, query)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818589822
+      }
+    ],
+    "Verify: Can write and read a test item from DynamoDB (local or AWS)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818589950
+      }
+    ],
+    "Create `Header.jsx` — logo top-left, light background, thin bottom divider": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818590059
+      }
+    ],
+    "Create `Footer.jsx` — dark slate background, white centered copyright text": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818590153
+      }
+    ],
+    "Create `PageLayout.jsx` — wraps Header + content area + Footer": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818590269
+      }
+    ],
+    "Content area: white, centered, max-width 720px, responsive padding": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818590386
+      }
+    ],
+    "Verify: Layout renders correctly on desktop (>1024px), tablet (640-1024px), mobile (<640px)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818590499
+      }
+    ],
+    "Create `ProgressBar.jsx` — 4-segment horizontal bar": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818590593
+      }
+    ],
+    "Completed steps: green (#22c55e) solid bar": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818590685
+      }
+    ],
+    "Current step: blue (#2563eb) solid bar": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818590788
+      }
+    ],
+    "Future steps: light grey (#e5e7eb) bar": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818590909
+      }
+    ],
+    "Right-aligned text: \"Step X of 4\"": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818591020
+      }
+    ],
+    "Props: `currentStep` (1-4), `totalSteps` (4)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818591121
+      }
+    ],
+    "Verify: Visually matches mockup, updates correctly per step": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818591223
+      }
+    ],
+    "Create `WizardShell.jsx` — renders ProgressBar + current step component + NavigationButtons": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818591332
+      }
+    ],
+    "Create `NavigationButtons.jsx`:": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818591446
+      }
+    ],
+    "Buttons placed below a thin horizontal divider, left-aligned": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818591555
+      }
+    ],
+    "Verify: Correct buttons shown per step, pill shape matches mockup": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818591654
+      }
+    ],
+    "Create `store/wizardStore.js` with full state shape (all step data, currentStep, isSubmitting, etc.)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818591744
+      }
+    ],
+    "Implement `goNext()` — validates current step, increments if valid": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818591852
+      }
+    ],
+    "Implement `goPrevious()` — decrements step, no validation": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818591961
+      }
+    ],
+    "Implement `setStepData(step, data)` — merges partial data": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818592081
+      }
+    ],
+    "Implement `canAccessStep(targetStep)` — step guard logic": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818592175
+      }
+    ],
+    "Implement `reset()` — clears all state": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818592269
+      }
+    ],
+    "Verify: State transitions work correctly, guards prevent skipping": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818592370
+      }
+    ],
+    "Create `hooks/useAutosave.js` — debounced (500ms) save to sessionStorage on field changes": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818592502
+      }
+    ],
+    "On mount: restore from `idp_complaint_draft` key if exists": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818592621
+      }
+    ],
+    "On successful submission: clear sessionStorage": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818592788
+      }
+    ],
+    "Create `hooks/useBeforeUnload.js` — warns user if unsaved data exists and step !== 'confirmed'": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818592905
+      }
+    ],
+    "Verify: Data persists through page refresh, warning shows on tab close with data": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818593018
+      }
+    ],
+    "`TextInput.jsx` — label, input, inline error, mandatory asterisk": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818593134
+      }
+    ],
+    "`TextArea.jsx` — label, multiline textarea, char counter, inline error": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818593254
+      }
+    ],
+    "`Dropdown.jsx` — label, select with chevron, placeholder, inline error": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818593352
+      }
+    ],
+    "`RadioGroup.jsx` — label, vertical radio list, inline error": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818593451
+      }
+    ],
+    "`Checkbox.jsx` — checkbox with label (supports links in label text)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818593555
+      }
+    ],
+    "`InlineError.jsx` — red text below field": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818593677
+      }
+    ],
+    "`FieldLabel.jsx` — bold label with optional asterisk for mandatory fields": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818593782
+      }
+    ],
+    "All fields show validation on blur and on submit attempt": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818593887
+      }
+    ],
+    "Verify: Each component renders correctly, shows/hides errors appropriately": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818593988
+      }
+    ],
+    "Create `FileUploader.jsx`:": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818594094
+      }
+    ],
+    "Client-side validation: max 10 files, max 10MB each, extension whitelist": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818594200
+      }
+    ],
+    "Call `POST /api/upload` per file, track progress": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818594305
+      }
+    ],
+    "Support `DELETE /api/upload/{fileId}` on remove": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818594395
+      }
+    ],
+    "Inline error messages for invalid files": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818594494
+      }
+    ],
+    "Verify: Upload works, progress shows, file list updates, errors display for invalid files": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818594605
+      }
+    ],
+    "Create `Step1_ComplaintDetails.jsx`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818594716
+      }
+    ],
+    "Integrate with React Hook Form + Yup step1Schema": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818594834
+      }
+    ],
+    "Complaint description: mandatory multiline TextArea with character counter": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818594936
+      }
+    ],
+    "File upload section using FileUploader component": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818595026
+      }
+    ],
+    "Validation on blur and on Next click": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818595134
+      }
+    ],
+    "Verify: Cannot proceed with blank description, files upload correctly, errors show inline": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818595244
+      }
+    ],
+    "Create `Step2_IncidentLocation.jsx`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818595371
+      }
+    ],
+    "Integrate with React Hook Form + Yup step2Schema": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818595468
+      }
+    ],
+    "Country dropdown: async-loaded from `GET /api/countries`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818595561
+      }
+    ],
+    "Office text field: mandatory unless \"Online\" selected": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818595656
+      }
+    ],
+    "\"Other, Please Specify\" field: hidden by default, rendered only when \"Online\" selected": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818595775
+      }
+    ],
+    "Conditional logic: Online → office optional, otherSpecify mandatory": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818595960
+      }
+    ],
+    "Verify: Country loads from API, conditional fields show/hide correctly, validation works": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818596077
+      }
+    ],
+    "Create `Step3_WhoIsLodging.jsx`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818596169
+      }
+    ],
+    "Integrate with React Hook Form + Yup step3Schema": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818596270
+      }
+    ],
+    "RadioGroup: Student, Parent, University/College/School Representative, Other": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818596368
+      }
+    ],
+    "\"Please Specify\" text field: hidden by default, rendered only when \"Other\" selected": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818596483
+      }
+    ],
+    "Verify: Radio selection works, conditional field appears for \"Other\", validation prevents empty proceed": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818596602
+      }
+    ],
+    "Create `Step4_ContactPreference.jsx`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818596703
+      }
+    ],
+    "RadioGroup: Yes / No": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818596793
+      }
+    ],
+    "**Yes flow:** Expand grey-background card (ContactCard) with:": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818596903
+      }
+    ],
+    "**No flow:** Hide contact card, show only Privacy Policy checkbox": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818596998
+      }
+    ],
+    "Privacy Policy checkbox (mandatory in both flows), links open in new tab": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818597111
+      }
+    ],
+    "Submit button: disabled until privacy accepted, disables on click to prevent double-submit": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818597222
+      }
+    ],
+    "Verify: Yes/No toggle shows/hides contact section, validation per flow, submit disables correctly": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818597317
+      }
+    ],
+    "Create `ConfirmationScreen.jsx`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818597432
+      }
+    ],
+    "**Yes flow message:** \"Thank you for sharing. Understanding your situation helps us continually improve and we will be in touch soon.\"": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818597558
+      }
+    ],
+    "**No flow message:** \"As you have asked us not to contact you, we won't. That said, understanding your situation helps us continually improve so thank you for sharing.\"": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818597666
+      }
+    ],
+    "Display Complaint ID prominently": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818597767
+      }
+    ],
+    "\"Return to IDP.com\" button — navigates to hardcoded URL (not history.back)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818597879
+      }
+    ],
+    "Verify: Correct message shown per flow, complaint ID displayed, return button works": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818597981
+      }
+    ],
+    "Create `src/routes/countries.js`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818598100
+      }
+    ],
+    "`GET /api/countries` — returns canonical country list (seeded data or DynamoDB lookup)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818598230
+      }
+    ],
+    "Include \"Online\" as special entry with `code: \"ONLINE\"`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818598347
+      }
+    ],
+    "`GET /api/offices?countryCode={code}` — returns offices for a country": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818598449
+      }
+    ],
+    "Apply rate limiting (60 req/min per IP)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818598550
+      }
+    ],
+    "Verify: Returns correct JSON structure, \"Online\" present, rate limiting triggers on excess": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818598652
+      }
+    ],
+    "Create `src/routes/upload.js`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818598816
+      }
+    ],
+    "`POST /api/upload` — accepts multipart file + sessionToken": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818598944
+      }
+    ],
+    "Server-side validation: MIME type via magic bytes (file-type lib), size ≤ 10MB": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818599036
+      }
+    ],
+    "Upload to S3 under `uploads/pending/{sessionToken}/{fileId}/{originalName}`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818599134
+      }
+    ],
+    "Trigger malware scan (or mock for initial implementation)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818599236
+      }
+    ],
+    "Return `{ fileId, fileName, size, mimeType, scanStatus }`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818599351
+      }
+    ],
+    "`DELETE /api/upload/{fileId}` — removes file from S3": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818599479
+      }
+    ],
+    "Apply rate limiting (20 req/15min per IP)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818599568
+      }
+    ],
+    "Verify: File uploads to S3, invalid files rejected, delete removes file": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818599701
+      }
+    ],
+    "Create `src/routes/complaints.js`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818599884
+      }
+    ],
+    "`POST /api/complaints` — accepts full complaint payload": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818600026
+      }
+    ],
+    "Server-side validation using shared Yup schemas": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818600199
+      }
+    ],
+    "Generate human-readable Complaint ID (nanoid: `IDP-YYYYMMDD-XXXX`)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818600359
+      }
+    ],
+    "Write complaint item to DynamoDB (PK/SK pattern)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818600465
+      }
+    ],
+    "Write attachment items to DynamoDB (link fileIds)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818600565
+      }
+    ],
+    "Move S3 files from `pending/` to `clean/{complaintId}/`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818600673
+      }
+    ],
+    "Write audit entry: `created`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818600844
+      }
+    ],
+    "**PII enforcement:** Do NOT write PII fields when contactPreference = false": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818601001
+      }
+    ],
+    "Apply rate limiting (5 req/15min per IP)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818601108
+      }
+    ],
+    "Return `{ complaintId, status, emailSent }`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818601239
+      }
+    ],
+    "Verify: Complaint created in DynamoDB, files moved in S3, PII not stored for No flow": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818601429
+      }
+    ],
+    "Create `src/services/emailService.js`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818601565
+      }
+    ],
+    "Send acknowledgement email via AWS SES (Yes flow only)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818601668
+      }
+    ],
+    "Async — do not block complaint response": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818601768
+      }
+    ],
+    "Retry logic: 3 attempts, exponential backoff (1s, 4s, 16s)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818601897
+      }
+    ],
+    "Log success/failure to audit entries in DynamoDB": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818602182
+      }
+    ],
+    "Verify: Email sends for Yes flow, does not send for No flow, retries on failure": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818602321
+      }
+    ],
+    "Create `src/services/idGeneratorService.js`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818602493
+      }
+    ],
+    "Format: `IDP-YYYYMMDD-XXXX` (4 chars from alphabet `ABCDEFGHJKLMNPQRSTUVWXYZ23456789`)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818602634
+      }
+    ],
+    "Use nanoid with custom alphabet": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818602771
+      }
+    ],
+    "Check uniqueness against DynamoDB GSI1 before returning": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818602896
+      }
+    ],
+    "Verify: Generates valid format, no ambiguous characters, handles collision retry": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818603016
+      }
+    ],
+    "Create `src/middleware/errorHandler.js` — global error handler, consistent JSON error responses": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818603132
+      }
+    ],
+    "Create `src/middleware/rateLimiter.js` — configurable per-endpoint rate limits": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818603252
+      }
+    ],
+    "Rate limit responses: 429 with `retryAfter` field": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818603365
+      }
+    ],
+    "Validation error responses: 400 with `fields` object": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818603491
+      }
+    ],
+    "Verify: Errors return proper status codes and JSON structure": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818603622
+      }
+    ],
+    "Wire Step 1 FileUploader to `POST/DELETE /api/upload`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818603783
+      }
+    ],
+    "Wire Step 2 Country dropdown to `GET /api/countries`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818603887
+      }
+    ],
+    "Wire Step 4 Country Code / Current Country to same `/api/countries` data": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818604000
+      }
+    ],
+    "Wire Submit button to `POST /api/complaints`": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818604117
+      }
+    ],
+    "Handle loading states, error states, and 429 (rate limited) responses in UI": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818604308
+      }
+    ],
+    "Verify: Full flow works end-to-end from Step 1 through Confirmation": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818604417
+      }
+    ],
+    "Connect `useAutosave` hook to wizard store": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818604523
+      }
+    ],
+    "Ensure sessionStorage saves on every field change (debounced)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818604737
+      }
+    ],
+    "Hydrate store from sessionStorage on page load": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818604906
+      }
+    ],
+    "Clear on successful submission": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818605103
+      }
+    ],
+    "Verify: Refresh mid-flow retains all entered data, submission clears draft": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818605249
+      }
+    ],
+    "Test all steps on mobile (<640px), tablet (640-1024px), desktop (>1024px)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818605447
+      }
+    ],
+    "Ensure phone Country Code + Phone Number stack on mobile, side-by-side on desktop": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818605599
+      }
+    ],
+    "Ensure navigation buttons are usable at all sizes": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818605814
+      }
+    ],
+    "Ensure file upload drag-drop works on desktop, browse button prominent on mobile": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818605941
+      }
+    ],
+    "Verify: No horizontal scroll, all interactive elements reachable, text readable at all breakpoints": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818606096
+      }
+    ],
+    "All form fields have associated labels (htmlFor/id)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818606252
+      }
+    ],
+    "Error messages linked to fields via aria-describedby": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818606380
+      }
+    ],
+    "Progress bar has appropriate aria-label/role": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818606507
+      }
+    ],
+    "Radio groups use proper fieldset/legend": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818606620
+      }
+    ],
+    "Focus management: first invalid field focused on validation failure": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818606729
+      }
+    ],
+    "Keyboard navigation works through all steps": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818606957
+      }
+    ],
+    "Verify: Can complete full flow using keyboard only, screen reader announces errors": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818607089
+      }
+    ],
+    "Implement actual ClamAV scan (Lambda or sidecar) or document mock behavior": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818607222
+      }
+    ],
+    "On scan failure: delete file from S3, return 422 to client": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818607366
+      }
+    ],
+    "On scan success: mark file as `clean` in DynamoDB attachment record": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818607501
+      }
+    ],
+    "Verify: Clean files pass, infected test file (EICAR) is rejected": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818607615
+      }
+    ],
+    "Implement `DELETE /api/complaints/{complaintId}` for GDPR erasure": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818607777
+      }
+    ],
+    "Delete DynamoDB items (complaint + attachments + audit)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818607981
+      }
+    ],
+    "Delete S3 objects for all attachments": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818608160
+      }
+    ],
+    "Write audit entry before deletion (for compliance log)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818608278
+      }
+    ],
+    "Configure S3 lifecycle policy: delete `pending/` objects after 24 hours": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818608396
+      }
+    ],
+    "Verify: Complaint fully removed from DynamoDB and S3 on delete": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818608593
+      }
+    ],
+    "Root README.md with project overview, architecture diagram, and local setup instructions": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818608692
+      }
+    ],
+    "Frontend README: how to run dev server, build for production": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818608821
+      }
+    ],
+    "Backend README: environment variables, DynamoDB table setup, S3 bucket config": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818608938
+      }
+    ],
+    "Document API endpoints (can be a simple markdown or Swagger/OpenAPI later)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818609181
+      }
+    ],
+    "Create `.env.example` files for frontend and backend": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818609316
+      }
+    ],
+    "Document all required AWS credentials and resource ARNs": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818609433
+      }
+    ],
+    "Document DynamoDB table creation steps (or provide IaC script)": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818609565
+      }
+    ],
+    "Document S3 bucket creation with appropriate policies": [
+      {
+        "executionId": "8186cdda-5938-4662-afa7-c62545c7abfb",
+        "chatSessionId": "sess_8e572241-03a8-4a0c-8d56-7e9dde2dfaf1",
+        "timestamp": 1784818609685
+      }
+    ]
+  }
+}

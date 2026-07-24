@@ -1,0 +1,29 @@
+{
+  "name": "idp-complaint-process-management-backend",
+  "version": "1.0.0",
+  "description": "Backend API for IDP Complaint Process Management",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1093.0",
+    "@aws-sdk/client-s3": "^3.1093.0",
+    "@aws-sdk/client-ses": "^3.1093.0",
+    "@aws-sdk/lib-dynamodb": "^3.1093.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.6.0",
+    "file-type": "^22.0.1",
+    "helmet": "^8.3.0",
+    "multer": "^2.2.0",
+    "nanoid": "^6.0.0",
+    "uuid": "^14.0.1",
+    "yup": "^1.7.1"
+  }
+}

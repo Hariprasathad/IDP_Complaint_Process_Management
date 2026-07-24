@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* Design tokens for IDP Complaint Wizard */
+@theme {
+  /* Brand colors */
+  --color-brand-blue: #2563eb;
+  --color-brand-blue-dark: #1d4ed8;
+  --color-brand-blue-light: #dbeafe;
+
+  /* Status colors */
+  --color-success-green: #22c55e;
+
+  /* Neutral / UI colors */
+  --color-slate-footer: #334155;
+  --color-grey-border: #e5e7eb;
+  --color-grey-bg: #f3f4f6;
+
+  /* Font family */
+  --font-sans: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* Base styles */
+@layer base {
+  body {
+    @apply font-sans text-gray-900 bg-white antialiased;
+    margin: 0;
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+}

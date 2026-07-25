@@ -4,12 +4,12 @@ const TextArea = ({ label, description, placeholder, value, onChange, name, erro
   return (
     <div className="mb-6 w-full">
       {label && (
-        <label className="block text-gray-900 font-semibold text-[14px] mb-1.5">
+        <label className="block text-[#333333] font-semibold text-[16px] leading-[24px] tracking-normal">
           {label}
         </label>
       )}
       {description && (
-        <p className="text-gray-600 text-[13px] mb-3 whitespace-pre-line leading-relaxed">
+        <p className="text-[14px] font-normal leading-[14px] tracking-normal text-[#767676] whitespace-pre-line mt-2">
           {description}
         </p>
       )}
@@ -19,8 +19,8 @@ const TextArea = ({ label, description, placeholder, value, onChange, name, erro
         onChange={onChange}
         placeholder={placeholder}
         required={required}
-        className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 min-h-[108px] resize-y placeholder:text-gray-400 placeholder:text-[13px] text-[14px] ${
-          error ? 'border-red-500 bg-red-50' : 'border-gray-300'
+        className={`w-full h-[150px] rounded-[8px] border bg-white px-[16px] pt-[14px] pb-[14px] text-[16px] leading-[24px] font-normal text-[#333333] tracking-normal placeholder:text-[#98A2B3] placeholder:text-[16px] placeholder:leading-[24px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] overflow-y-auto resize-y outline-none focus:border-[#5C656E] ${
+          error ? 'border-red-500 bg-red-50' : 'border-[#5C656E]'
         }`}
       />
       {error && <p className="mt-1 text-sm text-red-500">{error}</p>}

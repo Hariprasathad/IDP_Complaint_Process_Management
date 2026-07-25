@@ -10,8 +10,11 @@ const NavigationButtons = ({
   canSubmit 
 }) => {
   return (
-    <div className="w-full mt-5 pt-4 border-t border-gray-200">
-      <div className="flex justify-between items-center w-full">
+    <div className="w-full">
+      {/* Divider */}
+      <div className="w-full h-px bg-[#D9D9D9]" />
+      
+      <div className="flex justify-between items-center w-full pt-[24px]">
         {/* Previous Button - hidden on step 1 to keep Next aligned right */}
         <div className={`transition-opacity duration-300 ${currentStep === 1 ? 'invisible' : 'visible'}`}>
           <button
@@ -31,7 +34,7 @@ const NavigationButtons = ({
               type="button"
               onClick={onNext}
               disabled={isSubmitting}
-              className="px-8 py-2.5 text-[14px] bg-blue-600 border border-transparent rounded-full text-white font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 transition-colors"
+              className="w-[85px] h-[44px] rounded-[24px] bg-[#4664DC] px-[24px] py-[10px] flex items-center justify-center text-white text-[16px] font-medium leading-[24px] tracking-normal transition-colors hover:bg-[#3D58CC] focus:outline-none focus:ring-2 focus:ring-[#4664DC]/30 disabled:opacity-50"
             >
               Next
             </button>
@@ -40,7 +43,7 @@ const NavigationButtons = ({
               type="button"
               onClick={onSubmit}
               disabled={isSubmitting || !canSubmit}
-              className="px-8 py-2.5 text-[14px] bg-blue-600 border border-transparent rounded-full text-white font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 transition-colors"
+              className="h-[44px] rounded-[24px] bg-[#4664DC] px-[24px] py-[10px] flex items-center justify-center text-white text-[16px] font-medium leading-[24px] tracking-normal transition-colors hover:bg-[#3D58CC] focus:outline-none focus:ring-2 focus:ring-[#4664DC]/30 disabled:opacity-50"
             >
               {isSubmitting ? 'Submitting...' : 'Submit complaint'}
             </button>

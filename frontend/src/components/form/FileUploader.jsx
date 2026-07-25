@@ -25,16 +25,16 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
   };
 
   return (
-    <div className="mb-6 w-full">
+    <div className="w-full">
       {label && (
-        <label className="block text-gray-900 font-semibold text-[14px] mb-3">
+        <label className="block text-[#333333] font-semibold text-[16px] leading-[24px] tracking-normal w-[488px]">
           {label}
         </label>
       )}
       
       <div 
-        className={`w-full border-2 border-dashed rounded-lg py-5 px-6 text-center cursor-pointer transition-colors min-h-[115px] flex flex-col items-center justify-center ${
-          isDragging ? 'border-blue-400 bg-blue-50' : 'border-gray-300 bg-white hover:bg-gray-50'
+        className={`w-full h-[190px] rounded-[8px] border border-dashed bg-white text-center cursor-pointer transition-colors flex flex-col items-center justify-center ${
+          isDragging ? 'border-blue-400 bg-blue-50' : 'border-[#B8C4D6]'
         }`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
@@ -50,14 +50,14 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
           onChange={() => {}} // Handle file selection
         />
         
-        <div className="flex flex-col items-center justify-center space-y-1.5">
-          <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="flex flex-col items-center justify-center gap-[10px]">
+          <svg className="w-5 h-5 text-[#5C656E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
           </svg>
-          <p className="text-[13px] text-gray-700 font-medium">
-            Drag files here or <span className="text-[#2563eb] cursor-pointer">Browse</span>
+          <p className="text-[15px] font-medium leading-[15px] tracking-normal text-[#333333]">
+            Drag files here or <span className="text-[#2563eb] underline decoration-solid cursor-pointer">Browse</span>
           </p>
-          <p className="text-[10px] text-gray-400 uppercase tracking-wider">
+          <p className="text-[12px] font-normal leading-[12px] tracking-normal text-[#9AA1AB]">
             PDF, DOC, DOCX, JPG, JPEG, PNG — max {maxFiles} files, {maxSizeMB} MB each
           </p>
         </div>

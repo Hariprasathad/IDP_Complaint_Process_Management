@@ -24,18 +24,18 @@ const WizardShell = () => {
   };
 
   return (
-    <div className="flex flex-col w-full h-full">
-      {/* Step 1: Heading + Intro above progress bar */}
+    <div className="w-full max-w-[900px] mx-auto flex flex-col gap-[24px] pt-[40px] pr-[40px] pb-[32px] pl-[40px]">
+      {/* Page Header */}
       {currentStep === 1 && (
-        <div className="w-full mb-4">
-          <h1 className="text-[25px] font-bold text-gray-900 mb-2 tracking-[-0.01em]">Complaints</h1>
-          <p className="text-[13px] text-gray-700 font-normal mb-2 leading-[1.6]">
+        <div className="w-full max-w-[820px] flex flex-col gap-[12px]">
+          <h1 className="text-[36px] font-bold text-[#333333] leading-[47px] tracking-normal" style={{ fontFamily: "'Farro', sans-serif" }}>Complaints</h1>
+          <p className="text-[16px] font-normal text-[#333333] leading-[24px] tracking-normal">
             Please complete the information below so we can understand your situation better.
           </p>
-          <p className="text-[13px] text-gray-700 font-normal leading-[1.6]">
+          <p className="text-[16px] font-normal text-[#333333] leading-[24px] tracking-normal">
             By submitting this form, you agree that the information you provide will be handled in accordance with our{' '}
-            <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#2563eb] font-medium hover:underline">Privacy Policy</a> and{' '}
-            <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#2563eb] font-medium hover:underline">Website Terms of Use</a>.
+            <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#2563eb] font-normal underline decoration-solid">Privacy Policy</a> and{' '}
+            <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#2563eb] font-normal underline decoration-solid">Website Terms of Use</a>.
           </p>
         </div>
       )}
@@ -45,6 +45,11 @@ const WizardShell = () => {
         <div className="w-full">
           <ProgressBar currentStep={currentStep} totalSteps={4} />
         </div>
+      )}
+
+      {/* Divider */}
+      {currentStep < 5 && (
+        <div className="w-full max-w-[820px] h-px bg-[#D9D9D9]" />
       )}
       
       {/* Step content */}

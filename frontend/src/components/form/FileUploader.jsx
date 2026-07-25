@@ -4,6 +4,7 @@ import useWizardStore from '../../store/wizardStore';
 const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
   const fileInputRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [removingIds, setRemovingIds] = useState([]);
   
   const attachments = useWizardStore((state) => state.formData.attachments);
   const addAttachment = useWizardStore((state) => state.addAttachment);
@@ -75,6 +76,14 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
     }
   };
 
+  const handleRemoveFile = (id) => {
+    setRemovingIds((prev) => [...prev, id]);
+    setTimeout(() => {
+      removeAttachment(id);
+      setRemovingIds((prev) => prev.filter((rid) => rid !== id));
+    }, 200);
+  };
+
   const formatFileSize = (bytes) => {
     if (bytes < 1024) return bytes + ' B';
     if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
@@ -127,12 +136,18 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
       {attachments.length > 0 && (
         <div className="mt-4 flex flex-col gap-[8px]">
           {attachments.map((file) => (
-            <div key={file.id} className="flex items-center justify-between px-[16px] py-[10px] min-h-[52px] bg-white border border-[#E5E7EB] rounded-[10px] cursor-default hover:bg-[#F8FAFC] hover:border-[#D1D5DB] transition-all duration-200 ease-in-out">
+            <div 
+              key={file.id} 
+              className={`flex items-center justify-between px-[16px] py-[10px] min-h-[52px] bg-white border border-[#E5E7EB] rounded-[10px] cursor-default hover:bg-[#F8FAFC] hover:border-[#D1D5DB] transition-all duration-200 ease-in-out ${
+                removingIds.includes(file.id) ? 'opacity-0 -translate-y-1 max-h-0 py-0 my-0 overflow-hidden' : 'opacity-100 translate-y-0 max-h-[60px]'
+              }`}
+              style={{ transition: 'all 200ms ease-out' }}
+            >
               <a
                 href={file.file ? URL.createObjectURL(file.file) : '#'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#2563EB] text-[16px] font-normal no-underline hover:underline overflow-hidden text-ellipsis whitespace-nowrap max-w-[85%]"
+                className="text-[#2563EB] text-[16px] font-normal no-underline hover:underline overflow-hidden text-ellipsis whitespace-nowrap max-w-[85%] cursor-pointer"
                 onClick={(e) => e.stopPropagation()}
               >
                 {file.name}
@@ -143,8 +158,8 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
                 )}
                 <button
                   type="button"
-                  onClick={(e) => { e.stopPropagation(); removeAttachment(file.id); }}
-                  className="w-[32px] h-[32px] flex items-center justify-center text-[#9CA3AF] text-[16px] font-normal leading-none bg-transparent border-none cursor-pointer hover:text-[#DC2626] transition-colors rounded-full hover:bg-[#FEF2F2]"
+                  onClick={(e) => { e.stopPropagation(); handleRemoveFile(file.id); }}
+                  className="w-[32px] h-[32px] flex items-center justify-center text-[#9CA3AF] bg-transparent border-none cursor-pointer hover:text-[#DC2626] transition-[color] duration-200 ease-in-out rounded-full"
                   aria-label={`Remove ${file.name}`}
                 >
                   <svg className="w-[16px] h-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">

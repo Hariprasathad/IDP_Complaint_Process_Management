@@ -10,7 +10,7 @@ const NavigationButtons = ({
   canSubmit 
 }) => {
   return (
-    <div className="w-full mt-10 pt-8 border-t border-gray-300">
+    <div className="w-full mt-6 pt-4 border-t border-gray-300">
       <div className="flex justify-between items-center w-full">
         {/* Previous Button - hidden on step 1 to keep Next aligned right */}
         <div className={`transition-opacity duration-300 ${currentStep === 1 ? 'invisible' : 'visible'}`}>

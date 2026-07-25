@@ -27,13 +27,13 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
   return (
     <div className="mb-6 w-full">
       {label && (
-        <label className="block text-gray-800 font-bold mb-4">
+        <label className="block text-gray-900 font-semibold text-[15px] mb-4">
           {label}
         </label>
       )}
       
       <div 
-        className={`w-full border-2 border-dashed rounded-lg p-10 text-center cursor-pointer transition-colors min-h-[200px] flex flex-col items-center justify-center ${
+        className={`w-full border-2 border-dashed rounded-lg py-6 px-6 text-center cursor-pointer transition-colors min-h-[130px] flex flex-col items-center justify-center ${
           isDragging ? 'border-blue-400 bg-blue-50' : 'border-gray-300 bg-white hover:bg-gray-50'
         }`}
         onDragOver={handleDragOver}
@@ -50,14 +50,14 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
           onChange={() => {}} // Handle file selection
         />
         
-        <div className="flex flex-col items-center justify-center space-y-4">
-          <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="flex flex-col items-center justify-center space-y-2">
+          <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
           </svg>
-          <p className="text-[15px] text-gray-800 font-medium">
+          <p className="text-[14px] text-gray-800 font-medium">
             Drag files here or <span className="text-blue-600 cursor-pointer">Browse</span>
           </p>
-          <p className="text-[12px] text-gray-400 uppercase tracking-widest mt-2">
+          <p className="text-[11px] text-gray-400 uppercase tracking-widest">
             PDF, DOC, DOCX, JPG, JPEG, PNG — max {maxFiles} files, {maxSizeMB} MB each
           </p>
         </div>

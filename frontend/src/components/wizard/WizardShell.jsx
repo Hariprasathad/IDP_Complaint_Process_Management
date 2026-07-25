@@ -25,29 +25,31 @@ const WizardShell = () => {
 
   return (
     <div className="flex flex-col w-full h-full">
+      {/* Step 1: Heading + Intro above progress bar */}
+      {currentStep === 1 && (
+        <div className="w-full mb-5">
+          <h1 className="text-[28px] font-extrabold text-gray-900 mb-3 tracking-[-0.02em]">Complaints</h1>
+          <p className="text-[14px] text-gray-700 font-normal mb-3 leading-relaxed">
+            Please complete the information below so we can understand your situation better.
+          </p>
+          <p className="text-[14px] text-gray-700 font-normal leading-relaxed">
+            By submitting this form, you agree that the information you provide will be handled in accordance with our{' '}
+            <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#1d4ed8] font-medium hover:underline">Privacy Policy</a> and{' '}
+            <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#1d4ed8] font-medium hover:underline">Website Terms of Use</a>.
+          </p>
+        </div>
+      )}
+
+      {/* Progress bar */}
       {currentStep < 5 && (
         <div className="w-full">
           <ProgressBar currentStep={currentStep} totalSteps={4} />
         </div>
       )}
       
-      <div className="w-full flex-grow">
-        {currentStep === 1 && (
-          <>
-            <div className="mb-12">
-              <h1 className="text-[36px] font-bold text-gray-900 mb-8 tracking-tight">Complaints</h1>
-              <p className="text-[15px] text-gray-600 mb-6 leading-relaxed">
-                Please complete the information below so we can understand your situation better.
-              </p>
-              <p className="text-[15px] text-gray-600 leading-relaxed">
-                By submitting this form, you agree that the information you provide will be handled in accordance with our{' '}
-                <a href="#" className="text-blue-600 hover:underline">Privacy Policy</a> and{' '}
-                <a href="#" className="text-blue-600 hover:underline">Website Terms of Use</a>.
-              </p>
-            </div>
-            <Step1_ComplaintDetails />
-          </>
-        )}
+      {/* Step content */}
+      <div className="w-full">
+        {currentStep === 1 && <Step1_ComplaintDetails />}
         {currentStep === 2 && <Step2_IncidentLocation />}
         {currentStep === 3 && <Step3_WhoIsLodging />}
         {currentStep === 4 && <Step4_ContactPreference />}

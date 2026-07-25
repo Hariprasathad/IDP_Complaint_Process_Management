@@ -18,7 +18,7 @@ const WizardShell = () => {
   };
 
   return (
-    <div className="w-full max-w-[900px] mx-auto flex flex-col gap-[24px] pt-[40px] pr-[40px] pb-[32px] pl-[40px]">
+    <div className="w-full max-w-[824px] mx-auto flex flex-col gap-[24px] pt-[40px] pr-[40px] pb-[32px] pl-[40px]">
       {/* Page Header - Step 1 only */}
       {currentStep === 1 && (
         <div className="w-full max-w-[820px] flex flex-col gap-[12px]">
@@ -34,16 +34,12 @@ const WizardShell = () => {
         </div>
       )}
 
-      {/* Progress bar */}
+      {/* Progress bar + Divider */}
       {currentStep < 5 && (
-        <div className="w-full">
+        <div className="w-full flex flex-col gap-[12px]">
           <ProgressBar currentStep={currentStep} totalSteps={4} />
+          <div className="w-full max-w-[820px] h-px bg-[#D9D9D9]" />
         </div>
-      )}
-
-      {/* Divider below progress bar */}
-      {currentStep < 5 && (
-        <div className="w-full max-w-[820px] h-px bg-[#D9D9D9]" />
       )}
       
       {/* Step content */}

@@ -90,9 +90,12 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
       )}
       
       <div 
-        className={`w-full h-[190px] rounded-[8px] border border-dashed bg-white text-center cursor-pointer transition-colors flex flex-col items-center justify-center mt-3 ${
-          isDragging ? 'border-blue-400 bg-blue-50' : 'border-[#B8C4D6]'
+        className={`w-full h-[129px] rounded-[10px] bg-[#FAFBFC] text-center cursor-pointer transition-colors flex flex-col items-center justify-center mt-3 pt-[30px] pb-[30px] ${
+          isDragging ? 'bg-blue-50' : ''
         }`}
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' fill='%23FAFBFC' rx='10' ry='10' stroke='${isDragging ? '%234664DC' : '%23B9C1CC'}' stroke-width='1.5' stroke-dasharray='6%2C 5' stroke-dashoffset='0' stroke-linecap='round'/%3E%3C/svg%3E")`,
+        }}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
@@ -107,7 +110,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
           onChange={handleFileChange}
         />
         
-        <div className="flex flex-col items-center justify-center gap-[10px]">
+        <div className="flex flex-col items-center justify-center gap-[8px]">
           <svg className="w-5 h-5 text-[#5C656E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
           </svg>
@@ -122,29 +125,30 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
 
       {/* File list */}
       {attachments.length > 0 && (
-        <div className="mt-3 space-y-2">
+        <div className="mt-4 flex flex-col gap-[8px]">
           {attachments.map((file) => (
-            <div key={file.id} className="flex items-center justify-between p-3 bg-[#F9FAFB] border border-[#E5E7EB] rounded-[6px]">
+            <div key={file.id} className="flex items-center justify-between px-[16px] py-[10px] min-h-[52px] bg-white border border-[#E5E7EB] rounded-[10px] cursor-default hover:bg-[#F8FAFC] hover:border-[#D1D5DB] transition-all duration-200 ease-in-out">
+              <a
+                href={file.file ? URL.createObjectURL(file.file) : '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#2563EB] text-[16px] font-normal no-underline hover:underline overflow-hidden text-ellipsis whitespace-nowrap max-w-[85%]"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {file.name}
+              </a>
               <div className="flex items-center gap-3">
-                <svg className="w-4 h-4 text-[#5C656E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
-                <div>
-                  <p className="text-[13px] font-medium text-[#333333]">{file.name}</p>
-                  <p className="text-[11px] text-[#767676]">{formatFileSize(file.size)}</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
                 {file.status === 'error' && (
-                  <span className="text-[11px] text-red-500">{file.errorMessage}</span>
+                  <span className="text-[12px] text-red-500">{file.errorMessage}</span>
                 )}
                 <button
                   type="button"
                   onClick={(e) => { e.stopPropagation(); removeAttachment(file.id); }}
-                  className="text-[#767676] hover:text-red-500 transition-colors"
+                  className="w-[32px] h-[32px] flex items-center justify-center text-[#9CA3AF] text-[16px] font-normal leading-none bg-transparent border-none cursor-pointer hover:text-[#DC2626] transition-colors rounded-full hover:bg-[#FEF2F2]"
+                  aria-label={`Remove ${file.name}`}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                  <svg className="w-[16px] h-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                   </svg>
                 </button>
               </div>

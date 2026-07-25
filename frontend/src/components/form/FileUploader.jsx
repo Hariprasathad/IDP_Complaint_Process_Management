@@ -5,7 +5,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
   const fileInputRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   
-  const attachments = useWizardStore((state) => state.attachments);
+  const attachments = useWizardStore((state) => state.formData.attachments);
   const addAttachment = useWizardStore((state) => state.addAttachment);
   const removeAttachment = useWizardStore((state) => state.removeAttachment);
 

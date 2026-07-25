@@ -1,21 +1,26 @@
 import React from 'react';
 
+/**
+ * NavigationButtons triggers form submission via the form's id attribute.
+ * Each step form handles its own validation (via RHF) and calls goNext() on success.
+ * The "Previous" button directly calls goPrevious() without validation.
+ */
 const NavigationButtons = ({ 
   currentStep, 
   totalSteps = 4, 
   onPrevious, 
-  onNext, 
-  onSubmit, 
   isSubmitting,
-  canSubmit 
 }) => {
+  // Map current step to the form id
+  const formId = `step${currentStep}-form`;
+
   return (
     <div className="w-full">
       {/* Divider */}
       <div className="w-full h-px bg-[#D9D9D9]" />
       
       <div className="flex justify-between items-center w-full pt-[24px]">
-        {/* Previous Button - hidden on step 1 to keep Next aligned right */}
+        {/* Previous Button */}
         <div className={`transition-opacity duration-300 ${currentStep === 1 ? 'invisible' : 'visible'}`}>
           <button
             type="button"
@@ -27,12 +32,12 @@ const NavigationButtons = ({
           </button>
         </div>
 
-        {/* Next/Submit Button */}
-        <div className="w-1/2 flex justify-end">
+        {/* Next/Submit Button — triggers form submit via form attribute */}
+        <div>
           {currentStep < totalSteps ? (
             <button
-              type="button"
-              onClick={onNext}
+              type="submit"
+              form={formId}
               disabled={isSubmitting}
               className="w-[85px] h-[44px] rounded-[24px] bg-[#4664DC] px-[24px] py-[10px] flex items-center justify-center text-white text-[16px] font-medium leading-[24px] tracking-normal transition-colors hover:bg-[#3D58CC] focus:outline-none focus:ring-2 focus:ring-[#4664DC]/30 disabled:opacity-50"
             >
@@ -40,9 +45,9 @@ const NavigationButtons = ({
             </button>
           ) : (
             <button
-              type="button"
-              onClick={onSubmit}
-              disabled={isSubmitting || !canSubmit}
+              type="submit"
+              form={formId}
+              disabled={isSubmitting}
               className="h-[44px] rounded-[24px] bg-[#4664DC] px-[24px] py-[10px] flex items-center justify-center text-white text-[16px] font-medium leading-[24px] tracking-normal transition-colors hover:bg-[#3D58CC] focus:outline-none focus:ring-2 focus:ring-[#4664DC]/30 disabled:opacity-50"
             >
               {isSubmitting ? 'Submitting...' : 'Submit complaint'}

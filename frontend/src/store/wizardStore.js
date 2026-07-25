@@ -1,13 +1,19 @@
 import { create } from 'zustand';
 
-const initialState = {
-  currentStep: 1,
-  isSubmitting: false,
-  complaintId: null,
+/**
+ * Zustand store for wizard state.
+ * 
+ * Architecture:
+ * - Single flat `formData` object holds all field values
+ * - saveStepX() methods update relevant slices after RHF validation passes
+ * - getFormPayload() assembles the API request body
+ * - No localStorage — F5 resets everything
+ */
 
+const initialFormData = {
   // Step 1: Complaint Details
   description: '',
-  attachments: [], // { id, file, name, size, type, progress, status }
+  attachments: [], // { id, name, size, type, fileKey, status }
 
   // Step 2: Incident Location
   country: '',
@@ -31,10 +37,17 @@ const initialState = {
   privacyPolicyAccepted: false,
 };
 
+const initialState = {
+  currentStep: 1,
+  isSubmitting: false,
+  complaintId: null,
+  formData: { ...initialFormData },
+};
+
 const useWizardStore = create((set, get) => ({
   ...initialState,
 
-  // Navigation
+  // --- Navigation ---
   goNext: () => set((state) => {
     if (state.currentStep < 4) {
       return { currentStep: state.currentStep + 1 };
@@ -49,79 +62,77 @@ const useWizardStore = create((set, get) => ({
     return state;
   }),
 
-  // Step 1 actions
-  setDescription: (description) => set({ description }),
+  goToStep: (step) => set({ currentStep: step }),
+
+  // --- Save validated step data ---
+  saveStep1: (data) => set((state) => ({
+    formData: { ...state.formData, ...data },
+  })),
+
+  saveStep2: (data) => set((state) => ({
+    formData: { ...state.formData, ...data },
+  })),
+
+  saveStep3: (data) => set((state) => ({
+    formData: { ...state.formData, ...data },
+  })),
+
+  saveStep4: (data) => set((state) => ({
+    formData: { ...state.formData, ...data },
+  })),
+
+  // --- Attachments (managed asynchronously) ---
   addAttachment: (file) => set((state) => ({
-    attachments: [...state.attachments, file]
+    formData: {
+      ...state.formData,
+      attachments: [...state.formData.attachments, file],
+    },
   })),
+
   removeAttachment: (id) => set((state) => ({
-    attachments: state.attachments.filter(f => f.id !== id)
-  })),
-  updateAttachmentProgress: (id, progress, status) => set((state) => ({
-    attachments: state.attachments.map(f => 
-      f.id === id ? { ...f, progress, status } : f
-    )
+    formData: {
+      ...state.formData,
+      attachments: state.formData.attachments.filter(f => f.id !== id),
+    },
   })),
 
-  // Step 2 actions
-  setCountry: (country) => set({ country }),
-  setOffice: (office) => set({ office }),
-  setIsOnline: (isOnline) => set({ isOnline }),
-  setIsOther: (isOther) => set({ isOther }),
-  setOnlineSpecify: (onlineSpecify) => set({ onlineSpecify }),
-
-  // Step 3 actions
-  setComplainantType: (complainantType) => set({ complainantType }),
-  setComplainantTypeOther: (complainantTypeOther) => set({ complainantTypeOther }),
-
-  // Step 4 actions
-  setContactPreference: (contactPreference) => set({ contactPreference }),
-  setFullName: (fullName) => set({ fullName }),
-  setEmailAddress: (emailAddress) => set({ emailAddress }),
-  setCountryCode: (countryCode) => set({ countryCode }),
-  setPhoneNumber: (phoneNumber) => set({ phoneNumber }),
-  setCurrentCountry: (currentCountry) => set({ currentCountry }),
-  toggleStudyDestination: (destination) => set((state) => ({
-    studyDestinations: state.studyDestinations.includes(destination)
-      ? state.studyDestinations.filter(d => d !== destination)
-      : [...state.studyDestinations, destination]
-  })),
-  setPrivacyPolicyAccepted: (privacyPolicyAccepted) => set({ privacyPolicyAccepted }),
-
-  // Submission
+  // --- Submission ---
   setSubmitting: (isSubmitting) => set({ isSubmitting }),
   setComplaintId: (complaintId) => set({ complaintId }),
-  submitForm: () => set({ currentStep: 5 }),
+  submitComplete: (complaintId) => set({ currentStep: 5, complaintId, isSubmitting: false }),
 
-  // Reset
-  reset: () => set(initialState),
+  // --- Get API payload ---
+  getFormPayload: () => {
+    const { formData } = get();
 
-  // Get all form data for submission
-  getFormData: () => {
-    const state = get();
     return {
-      description: state.description.trim(),
-      attachments: state.attachments.filter(f => f.status === 'completed'),
+      description: formData.description.trim(),
+      attachments: formData.attachments
+        .filter(f => f.status === 'completed')
+        .map(f => ({ fileKey: f.fileKey, fileName: f.name, fileSize: f.size })),
       location: {
-        country: state.country,
-        office: state.office,
-        isOnline: state.isOnline,
-        onlineSpecify: state.onlineSpecify,
+        country: formData.country,
+        office: formData.office,
+        isOnline: formData.isOnline,
+        onlineSpecify: formData.onlineSpecify,
       },
-      complainantType: state.complainantType,
-      complainantTypeOther: state.complainantTypeOther,
-      contactPreference: state.contactPreference,
-      contactDetails: state.contactPreference === 'yes' ? {
-        fullName: state.fullName.trim(),
-        emailAddress: state.emailAddress.trim(),
-        countryCode: state.countryCode,
-        phoneNumber: state.phoneNumber.trim(),
-        currentCountry: state.currentCountry,
+      complainantType: formData.complainantType,
+      complainantTypeOther: formData.complainantTypeOther,
+      contactPreference: formData.contactPreference,
+      contactDetails: formData.contactPreference === 'yes' ? {
+        fullName: formData.fullName.trim(),
+        emailAddress: formData.emailAddress.trim(),
+        countryCode: formData.countryCode,
+        phoneNumber: formData.phoneNumber.trim(),
+        currentCountry: formData.currentCountry,
       } : null,
-      studyDestinations: state.studyDestinations,
-      privacyPolicyAccepted: state.privacyPolicyAccepted,
+      studyDestinations: formData.studyDestinations,
+      privacyPolicyAccepted: formData.privacyPolicyAccepted,
     };
   },
+
+  // --- Reset ---
+  reset: () => set({ ...initialState, formData: { ...initialFormData } }),
 }));
 
 export default useWizardStore;

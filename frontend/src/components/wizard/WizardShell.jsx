@@ -9,23 +9,17 @@ import Step4_ContactPreference from '../steps/Step4_ContactPreference';
 import ConfirmationScreen from '../steps/ConfirmationScreen';
 
 const WizardShell = () => {
-  const { currentStep, goNext, goPrevious, submitForm, isSubmitting } = useWizardStore();
-
-  const handleNext = () => {
-    goNext();
-  };
+  const currentStep = useWizardStore((state) => state.currentStep);
+  const isSubmitting = useWizardStore((state) => state.isSubmitting);
+  const goPrevious = useWizardStore((state) => state.goPrevious);
 
   const handlePrevious = () => {
     goPrevious();
   };
 
-  const handleSubmit = () => {
-    submitForm();
-  };
-
   return (
     <div className="w-full max-w-[900px] mx-auto flex flex-col gap-[24px] pt-[40px] pr-[40px] pb-[32px] pl-[40px]">
-      {/* Page Header */}
+      {/* Page Header - Step 1 only */}
       {currentStep === 1 && (
         <div className="w-full max-w-[820px] flex flex-col gap-[12px]">
           <h1 className="text-[36px] font-bold text-[#333333] leading-[47px] tracking-normal" style={{ fontFamily: "'Farro', sans-serif" }}>Complaints</h1>
@@ -47,7 +41,7 @@ const WizardShell = () => {
         </div>
       )}
 
-      {/* Divider */}
+      {/* Divider below progress bar */}
       {currentStep < 5 && (
         <div className="w-full max-w-[820px] h-px bg-[#D9D9D9]" />
       )}
@@ -61,15 +55,13 @@ const WizardShell = () => {
         {currentStep === 5 && <ConfirmationScreen />}
       </div>
 
+      {/* Navigation Buttons */}
       {currentStep < 5 && (
         <NavigationButtons 
           currentStep={currentStep}
           totalSteps={4}
           onPrevious={handlePrevious}
-          onNext={handleNext}
-          onSubmit={handleSubmit}
           isSubmitting={isSubmitting}
-          canSubmit={true} 
         />
       )}
     </div>

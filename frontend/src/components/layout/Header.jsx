@@ -3,7 +3,7 @@ import React from 'react';
 const Header = () => {
   return (
     <header className="bg-white relative z-10 w-full">
-      <div className="w-full max-w-[800px] mx-auto px-4 sm:px-6 lg:px-0">
+      <div className="w-full max-w-[900px] mx-auto px-[40px]">
         <div className="flex justify-start items-center h-[72px]">
           <div className="flex-shrink-0 flex items-center">
             <img src="/idplogo.png" alt="IDP Education" className="h-[40px] w-auto" />

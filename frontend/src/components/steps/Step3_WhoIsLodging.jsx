@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
+import useWizardStore from '../../store/wizardStore';
 import RadioGroup from '../form/RadioGroup';
 import TextInput from '../form/TextInput';
 
 const Step3_WhoIsLodging = () => {
-  const [selectedRole, setSelectedRole] = useState('');
+  const complainantType = useWizardStore((state) => state.complainantType);
+  const complainantTypeOther = useWizardStore((state) => state.complainantTypeOther);
+  const setComplainantType = useWizardStore((state) => state.setComplainantType);
+  const setComplainantTypeOther = useWizardStore((state) => state.setComplainantTypeOther);
 
   const options = [
     { value: 'student', label: 'I am a Student' },
@@ -20,16 +24,18 @@ const Step3_WhoIsLodging = () => {
         <RadioGroup 
           name="role"
           options={options}
-          selectedValue={selectedRole}
-          onChange={(e) => setSelectedRole(e.target.value)}
+          selectedValue={complainantType}
+          onChange={(e) => setComplainantType(e.target.value)}
         />
       </div>
 
-      {selectedRole === 'other' && (
+      {complainantType === 'other' && (
         <div className="ml-7 mt-2">
           <TextInput 
             placeholder="Please specify"
-            name="otherRoleSpecification"
+            name="complainantTypeOther"
+            value={complainantTypeOther}
+            onChange={(e) => setComplainantTypeOther(e.target.value)}
           />
         </div>
       )}

@@ -1,8 +1,52 @@
 import React, { useRef, useState } from 'react';
+import useWizardStore from '../../store/wizardStore';
 
 const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
   const fileInputRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
+  
+  const attachments = useWizardStore((state) => state.attachments);
+  const addAttachment = useWizardStore((state) => state.addAttachment);
+  const removeAttachment = useWizardStore((state) => state.removeAttachment);
+
+  const SUPPORTED_TYPES = [
+    'application/pdf',
+    'application/msword',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+    'image/jpeg',
+    'image/jpg',
+    'image/png',
+  ];
+
+  const validateFile = (file) => {
+    if (attachments.length >= maxFiles) {
+      return `You can upload a maximum of ${maxFiles} files.`;
+    }
+    if (file.size > maxSizeMB * 1024 * 1024) {
+      return `File size must not exceed ${maxSizeMB} MB.`;
+    }
+    if (!SUPPORTED_TYPES.includes(file.type)) {
+      return 'File format is not supported. Allowed: PDF, DOC, DOCX, JPG, JPEG, PNG.';
+    }
+    return null;
+  };
+
+  const handleFiles = (files) => {
+    Array.from(files).forEach((file) => {
+      const error = validateFile(file);
+      const attachment = {
+        id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+        file,
+        name: file.name,
+        size: file.size,
+        type: file.type,
+        progress: error ? 0 : 100,
+        status: error ? 'error' : 'completed',
+        errorMessage: error || undefined,
+      };
+      addAttachment(attachment);
+    });
+  };
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -17,11 +61,24 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
   const handleDrop = (e) => {
     e.preventDefault();
     setIsDragging(false);
-    // Logic for handling files will be added here
+    handleFiles(e.dataTransfer.files);
   };
 
   const handleClick = () => {
     fileInputRef.current.click();
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files.length > 0) {
+      handleFiles(e.target.files);
+      e.target.value = '';
+    }
+  };
+
+  const formatFileSize = (bytes) => {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
   };
 
   return (
@@ -33,7 +90,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
       )}
       
       <div 
-        className={`w-full h-[190px] rounded-[8px] border border-dashed bg-white text-center cursor-pointer transition-colors flex flex-col items-center justify-center ${
+        className={`w-full h-[190px] rounded-[8px] border border-dashed bg-white text-center cursor-pointer transition-colors flex flex-col items-center justify-center mt-3 ${
           isDragging ? 'border-blue-400 bg-blue-50' : 'border-[#B8C4D6]'
         }`}
         onDragOver={handleDragOver}
@@ -47,7 +104,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
           className="hidden" 
           multiple
           accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
-          onChange={() => {}} // Handle file selection
+          onChange={handleFileChange}
         />
         
         <div className="flex flex-col items-center justify-center gap-[10px]">
@@ -62,6 +119,39 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
           </p>
         </div>
       </div>
+
+      {/* File list */}
+      {attachments.length > 0 && (
+        <div className="mt-3 space-y-2">
+          {attachments.map((file) => (
+            <div key={file.id} className="flex items-center justify-between p-3 bg-[#F9FAFB] border border-[#E5E7EB] rounded-[6px]">
+              <div className="flex items-center gap-3">
+                <svg className="w-4 h-4 text-[#5C656E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+                <div>
+                  <p className="text-[13px] font-medium text-[#333333]">{file.name}</p>
+                  <p className="text-[11px] text-[#767676]">{formatFileSize(file.size)}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                {file.status === 'error' && (
+                  <span className="text-[11px] text-red-500">{file.errorMessage}</span>
+                )}
+                <button
+                  type="button"
+                  onClick={(e) => { e.stopPropagation(); removeAttachment(file.id); }}
+                  className="text-[#767676] hover:text-red-500 transition-colors"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

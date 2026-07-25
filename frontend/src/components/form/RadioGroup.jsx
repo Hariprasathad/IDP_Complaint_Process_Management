@@ -6,17 +6,17 @@ const RadioGroup = ({ options, selectedValue, onChange, name, error }) => {
       <div className="space-y-4">
         {options.map((option) => (
           <label key={option.value} className="flex items-start cursor-pointer group">
-            <div className="flex items-center h-5">
+            <div className="flex items-center h-6">
               <input
                 type="radio"
                 name={name}
                 value={option.value}
                 checked={selectedValue === option.value}
                 onChange={onChange}
-                className="w-5 h-5 text-blue-600 border-gray-400 focus:ring-blue-500 bg-white"
+                className="w-[16px] h-[16px] text-blue-600 border-gray-400 focus:ring-blue-500 bg-white"
               />
             </div>
-            <div className="ml-3 text-gray-700">
+            <div className="ml-3 text-[#333333] font-normal text-[15px] leading-[24px] tracking-normal">
               {option.label}
             </div>
           </label>

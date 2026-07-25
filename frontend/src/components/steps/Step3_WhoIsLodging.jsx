@@ -6,25 +6,27 @@ const Step3_WhoIsLodging = () => {
   const [selectedRole, setSelectedRole] = useState('');
 
   const options = [
-    { value: 'partner', label: 'I am a member of a University, College or School and an IDP Partner' },
-    { value: 'non_partner', label: 'I am a member of a University, College or School, but not an IDP Partner' },
-    { value: 'employee', label: 'I am an IDP employee raising on behalf of a University, College or School and an IDP Partner' },
+    { value: 'student', label: 'I am a Student' },
+    { value: 'parent', label: 'I am a Parent of a Student' },
+    { value: 'university_member', label: 'I am a member of a University, College or School, sharing on behalf of a Student or Parent' },
     { value: 'other', label: 'Other - Please Specify' }
   ];
 
   return (
     <div className="w-full">
-      <h2 className="text-xl font-bold text-gray-800 mb-6">Which of the following best describes you?</h2>
+      <h2 className="text-[16px] font-semibold leading-[24px] tracking-normal text-[#333333]">Which of the following best describes you?</h2>
       
-      <RadioGroup 
-        name="role"
-        options={options}
-        selectedValue={selectedRole}
-        onChange={(e) => setSelectedRole(e.target.value)}
-      />
+      <div className="mt-4">
+        <RadioGroup 
+          name="role"
+          options={options}
+          selectedValue={selectedRole}
+          onChange={(e) => setSelectedRole(e.target.value)}
+        />
+      </div>
 
       {selectedRole === 'other' && (
-        <div className="ml-8 mt-2">
+        <div className="ml-7 mt-2">
           <TextInput 
             placeholder="Please specify"
             name="otherRoleSpecification"

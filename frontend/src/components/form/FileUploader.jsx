@@ -19,34 +19,52 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
     'image/png',
   ];
 
+  const [validationError, setValidationError] = useState('');
+
   const validateFile = (file) => {
-    if (attachments.length >= maxFiles) {
-      return `You can upload a maximum of ${maxFiles} files.`;
-    }
     if (file.size > maxSizeMB * 1024 * 1024) {
-      return `File size must not exceed ${maxSizeMB} MB.`;
+      return `File "${file.name}" exceeds ${maxSizeMB} MB.`;
     }
     if (!SUPPORTED_TYPES.includes(file.type)) {
-      return 'File format is not supported. Allowed: PDF, DOC, DOCX, JPG, JPEG, PNG.';
+      return `File "${file.name}" is not supported. Allowed: PDF, DOC, DOCX, JPG, JPEG, PNG.`;
     }
     return null;
   };
 
   const handleFiles = (files) => {
-    Array.from(files).forEach((file) => {
+    setValidationError('');
+
+    // Check max files limit first
+    const remainingSlots = maxFiles - attachments.length;
+    if (remainingSlots <= 0) {
+      setValidationError(`You can upload a maximum of ${maxFiles} files.`);
+      return;
+    }
+
+    const filesToProcess = Array.from(files).slice(0, remainingSlots);
+    const rejectedCount = Array.from(files).length - filesToProcess.length;
+
+    filesToProcess.forEach((file) => {
       const error = validateFile(file);
-      const attachment = {
-        id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-        file,
-        name: file.name,
-        size: file.size,
-        type: file.type,
-        progress: error ? 0 : 100,
-        status: error ? 'error' : 'completed',
-        errorMessage: error || undefined,
-      };
-      addAttachment(attachment);
+      if (error) {
+        setValidationError(error);
+      } else {
+        const attachment = {
+          id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          file,
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          progress: 100,
+          status: 'completed',
+        };
+        addAttachment(attachment);
+      }
     });
+
+    if (rejectedCount > 0) {
+      setValidationError(`You can upload a maximum of ${maxFiles} files. ${rejectedCount} file(s) were not added.`);
+    }
   };
 
   const handleDragOver = (e) => {
@@ -132,6 +150,11 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
         </div>
       </div>
 
+      {/* Validation error message */}
+      {validationError && (
+        <p className="mt-2 text-[13px] text-red-500">{validationError}</p>
+      )}
+
       {/* File list */}
       {attachments.length > 0 && (
         <div className="mt-4 flex flex-col gap-[8px]">
@@ -153,9 +176,6 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
                 {file.name}
               </a>
               <div className="flex items-center gap-3">
-                {file.status === 'error' && (
-                  <span className="text-[12px] text-red-500">{file.errorMessage}</span>
-                )}
                 <button
                   type="button"
                   onClick={(e) => { e.stopPropagation(); handleRemoveFile(file.id); }}

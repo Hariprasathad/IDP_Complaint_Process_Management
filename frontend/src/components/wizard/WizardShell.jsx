@@ -27,15 +27,15 @@ const WizardShell = () => {
     <div className="flex flex-col w-full h-full">
       {/* Step 1: Heading + Intro above progress bar */}
       {currentStep === 1 && (
-        <div className="w-full mb-5">
-          <h1 className="text-[28px] font-extrabold text-gray-900 mb-3 tracking-[-0.02em]">Complaints</h1>
-          <p className="text-[14px] text-gray-700 font-normal mb-3 leading-relaxed">
+        <div className="w-full mb-4">
+          <h1 className="text-[25px] font-bold text-gray-900 mb-2 tracking-[-0.01em]">Complaints</h1>
+          <p className="text-[13px] text-gray-700 font-normal mb-2 leading-[1.6]">
             Please complete the information below so we can understand your situation better.
           </p>
-          <p className="text-[14px] text-gray-700 font-normal leading-relaxed">
+          <p className="text-[13px] text-gray-700 font-normal leading-[1.6]">
             By submitting this form, you agree that the information you provide will be handled in accordance with our{' '}
-            <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#1d4ed8] font-medium hover:underline">Privacy Policy</a> and{' '}
-            <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#1d4ed8] font-medium hover:underline">Website Terms of Use</a>.
+            <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#2563eb] font-medium hover:underline">Privacy Policy</a> and{' '}
+            <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#2563eb] font-medium hover:underline">Website Terms of Use</a>.
           </p>
         </div>
       )}

@@ -2,11 +2,11 @@ import React from 'react';
 
 const ProgressBar = ({ currentStep, totalSteps = 4 }) => {
   return (
-    <div className="w-full mb-5 mt-0">
+    <div className="w-full mb-4 mt-0">
       <div className="flex justify-end mb-1">
-        <span className="text-[13px] text-gray-500 font-medium">Step {currentStep} of {totalSteps}</span>
+        <span className="text-[12px] text-gray-500 font-medium">Step {currentStep} of {totalSteps}</span>
       </div>
-      <div className="flex gap-2">
+      <div className="flex gap-[6px]">
         {Array.from({ length: totalSteps }).map((_, index) => {
           const stepNumber = index + 1;
           let bgColor = 'bg-[#e5e7eb]'; // Future step
@@ -20,7 +20,7 @@ const ProgressBar = ({ currentStep, totalSteps = 4 }) => {
           return (
             <div 
               key={stepNumber} 
-              className={`flex-1 h-[6px] rounded-full ${bgColor} transition-colors duration-300`} 
+              className={`flex-1 h-[5px] rounded-full ${bgColor} transition-colors duration-300`} 
             />
           );
         })}

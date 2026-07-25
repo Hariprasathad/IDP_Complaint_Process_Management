@@ -4,7 +4,7 @@ const TextArea = ({ label, description, placeholder, value, onChange, name, erro
   return (
     <div className="mb-6 w-full">
       {label && (
-        <label className="block text-gray-900 font-semibold text-[15px] mb-2">
+        <label className="block text-gray-900 font-semibold text-[14px] mb-1.5">
           {label}
         </label>
       )}
@@ -19,7 +19,7 @@ const TextArea = ({ label, description, placeholder, value, onChange, name, erro
         onChange={onChange}
         placeholder={placeholder}
         required={required}
-        className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 min-h-[120px] resize-y placeholder:text-gray-400 text-[14px] ${
+        className={`w-full px-4 py-3 border rounded-xl focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 min-h-[108px] resize-y placeholder:text-gray-400 placeholder:text-[13px] text-[14px] ${
           error ? 'border-red-500 bg-red-50' : 'border-gray-300'
         }`}
       />

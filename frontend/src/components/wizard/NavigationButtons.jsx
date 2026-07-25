@@ -21,9 +21,9 @@ const NavigationButtons = ({
             type="button"
             onClick={onPrevious}
             disabled={isSubmitting}
-            className="px-8 py-2.5 text-[14px] border border-gray-300 rounded-full text-blue-600 font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors"
+            className="w-[139px] h-[44px] rounded-[24px] border border-[#4664DC] bg-white px-[24px] py-[10px] flex items-center justify-center text-[#4664DC] text-[16px] font-semibold leading-[24px] tracking-normal shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#4664DC]/30"
           >
-            Previous
+            ← Previous
           </button>
         </div>
 

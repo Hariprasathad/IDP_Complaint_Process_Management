@@ -9,9 +9,9 @@ const Checkbox = ({ label, checked, onChange, name, error }) => {
           name={name}
           checked={checked}
           onChange={onChange}
-          className="form-checkbox h-5 w-5 text-blue-600 border-gray-400 rounded focus:ring-blue-500 focus:ring-2 focus:outline-none"
+          className="h-[16px] w-[16px] text-blue-600 border-gray-400 rounded focus:ring-blue-500 focus:ring-2 focus:outline-none"
         />
-        <span className="ml-3 text-gray-700">{label}</span>
+        <span className="ml-3 text-[#333333] font-normal text-[15px] leading-[24px] tracking-normal">{label}</span>
       </label>
       {error && <p className="mt-1 text-sm text-red-500 ml-8">{error}</p>}
     </div>

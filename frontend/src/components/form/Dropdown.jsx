@@ -4,7 +4,7 @@ const Dropdown = ({ label, placeholder, options, value, onChange, name, error, r
   return (
     <div className="mb-6 w-full">
       {label && (
-        <label className="block text-gray-800 font-bold mb-1">
+        <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
           {label}
         </label>
       )}

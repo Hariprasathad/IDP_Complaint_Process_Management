@@ -18,7 +18,7 @@ const Step2_IncidentLocation = () => {
 
   return (
     <div className="w-full">
-      <h2 className="text-xl font-bold text-gray-800 mb-6">Where did this happen?</h2>
+      <h2 className="text-[16px] font-semibold leading-[24px] tracking-normal text-[#333333]">Where did this happen?</h2>
       
       <Dropdown 
         label="Country"
@@ -34,7 +34,7 @@ const Step2_IncidentLocation = () => {
       />
 
       <div className="mt-6 mb-2">
-        <span className="block text-gray-800 font-bold mb-3">Other</span>
+        <span className="block text-[#333333] font-semibold text-[16px] leading-[24px] tracking-normal mb-3">Other</span>
         <Checkbox 
           label="Online"
           name="isOnline"

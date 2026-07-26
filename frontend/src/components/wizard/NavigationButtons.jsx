@@ -25,9 +25,9 @@ const NavigationButtons = ({
         <div className={`transition-opacity duration-300 ${currentStep === 1 ? 'invisible' : 'visible'}`}>
           <button
             type="button"
-            onClick={onPrevious}
+            onClick={(e) => { e.currentTarget.blur(); onPrevious(); }}
             disabled={isSubmitting}
-            className="w-[139px] h-[44px] rounded-[24px] border border-[#4664DC] bg-white px-[24px] py-[10px] flex items-center justify-center text-[#4664DC] text-[16px] font-semibold leading-[24px] tracking-normal shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] cursor-pointer transition-all duration-200 ease hover:bg-[#3D58CC] hover:text-white hover:border-[#3D58CC] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4664DC]/30"
+            className="w-[139px] h-[44px] rounded-[24px] border border-[#4664DC] bg-white px-[24px] py-[10px] flex items-center justify-center text-[#4664DC] text-[16px] font-semibold leading-[24px] tracking-normal shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] cursor-pointer transition-all duration-200 ease hover:bg-[#3D58CC] hover:text-white hover:border-[#3D58CC] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4664DC]/30 active:bg-[#3D58CC] active:text-white active:border-[#3D58CC]"
           >
             ← Previous
           </button>

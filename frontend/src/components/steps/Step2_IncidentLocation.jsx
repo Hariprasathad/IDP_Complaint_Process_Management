@@ -36,6 +36,7 @@ const Step2_IncidentLocation = () => {
       isOther: step2Data.isOther,
       onlineSpecify: step2Data.onlineSpecify,
     },
+    mode: 'onBlur',
   });
 
   const isOnline = watch('isOnline');
@@ -56,7 +57,7 @@ const Step2_IncidentLocation = () => {
         {/* Country */}
         <div>
           <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
-            Country
+            Country <span className="text-[#EF4444]">*</span>
           </label>
           <div className="relative">
             <select
@@ -85,7 +86,7 @@ const Step2_IncidentLocation = () => {
         {!isOnline && (
           <div>
             <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
-              Office
+              Office <span className="text-[#EF4444]">*</span>
             </label>
             <input
               type="text"
@@ -139,6 +140,9 @@ const Step2_IncidentLocation = () => {
         {/* Please Specify field */}
         {(isOnline || isOther) && (
           <div className="ml-7">
+            <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
+              Please Specify <span className="text-[#EF4444]">*</span>
+            </label>
             <input
               type="text"
               {...register('onlineSpecify')}

@@ -27,6 +27,7 @@ const Step3_WhoIsLodging = () => {
       complainantType: step3Data.complainantType,
       complainantTypeOther: step3Data.complainantTypeOther,
     },
+    mode: 'onBlur',
   });
 
   const complainantType = watch('complainantType');
@@ -39,7 +40,7 @@ const Step3_WhoIsLodging = () => {
   return (
     <form id="step3-form" onSubmit={handleSubmit(onSubmit)} className="w-full">
       <h2 className="text-[16px] font-semibold leading-[24px] tracking-normal text-[#333333] mb-5">
-        Which of the following best describes you?
+        Which of the following best describes you? <span className="text-[#EF4444]">*</span>
       </h2>
 
       <div className="flex flex-col gap-[16px]">
@@ -66,6 +67,9 @@ const Step3_WhoIsLodging = () => {
       {/* Other - Please Specify input */}
       {complainantType === 'other' && (
         <div className="mt-3 ml-[30px]">
+          <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
+            Please Specify <span className="text-[#EF4444]">*</span>
+          </label>
           <input
             type="text"
             {...register('complainantTypeOther')}

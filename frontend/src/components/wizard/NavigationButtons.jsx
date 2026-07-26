@@ -10,6 +10,7 @@ const NavigationButtons = ({
   totalSteps = 4, 
   onPrevious, 
   isSubmitting,
+  canSubmit = true,
 }) => {
   // Map current step to the form id
   const formId = `step${currentStep}-form`;
@@ -47,7 +48,7 @@ const NavigationButtons = ({
             <button
               type="submit"
               form={formId}
-              disabled={isSubmitting}
+              disabled={isSubmitting || !canSubmit}
               className="h-[44px] rounded-[24px] bg-[#4664DC] px-[24px] py-[10px] flex items-center justify-center text-white text-[16px] font-medium leading-[24px] tracking-normal cursor-pointer transition-all duration-200 ease hover:bg-[#3D58CC] focus:outline-none focus:ring-2 focus:ring-[#4664DC]/30 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? 'Submitting...' : 'Submit complaint'}

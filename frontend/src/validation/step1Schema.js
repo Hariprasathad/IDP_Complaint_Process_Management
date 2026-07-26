@@ -2,17 +2,13 @@ import * as yup from 'yup';
 
 const MAX_DESCRIPTION_LENGTH = 5000;
 
-// Allow: letters, numbers, spaces, newlines, common punctuation
-// Disallow: emojis and special Unicode control characters
-const ALLOWED_CHARS_REGEX = /^[A-Za-z0-9\s.,!?:;'"()\-\/\\@#$%&*+=\[\]{}<>|~`_^°£€¥©®™\n\r]+$/;
-
 export const step1Schema = yup.object().shape({
   description: yup
     .string()
-    .required('Please describe what has happened. This field is required.')
+    .required('Please answer this question')
     .test(
       'not-only-spaces',
-      'Description must not contain only spaces.',
+      'Please answer this question',
       (value) => value && value.trim().length > 0
     )
     .test(
@@ -25,5 +21,5 @@ export const step1Schema = yup.object().shape({
         return !emojiRegex.test(value);
       }
     )
-    .max(MAX_DESCRIPTION_LENGTH, `Complaint description must not exceed ${MAX_DESCRIPTION_LENGTH} characters.`),
+    .max(MAX_DESCRIPTION_LENGTH, 'Please answer this question'),
 });

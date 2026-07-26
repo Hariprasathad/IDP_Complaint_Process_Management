@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import useWizardStore from '../../store/wizardStore';
@@ -48,6 +48,8 @@ const Step4_ContactPreference = () => {
     handleSubmit,
     watch,
     control,
+    setValue,
+    clearErrors,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(step4Schema),
@@ -59,10 +61,31 @@ const Step4_ContactPreference = () => {
       phoneNumber: step4Data.phoneNumber,
       currentCountry: step4Data.currentCountry,
       studyDestinations: step4Data.studyDestinations,
+      privacyPolicyAccepted: step4Data.privacyPolicyAccepted || false,
     },
+    mode: 'onBlur',
   });
 
   const contactPreference = watch('contactPreference');
+
+  const prevContactPref = useRef(contactPreference);
+
+  useEffect(() => {
+    // Only reset when switching FROM yes TO no
+    if (prevContactPref.current === 'yes' && contactPreference === 'no') {
+      // Reset all Yes-flow fields to empty/default
+      setValue('fullName', '');
+      setValue('emailAddress', '');
+      setValue('countryCode', '');
+      setValue('phoneNumber', '');
+      setValue('currentCountry', '');
+      setValue('studyDestinations', []);
+
+      // Clear all validation errors for Yes-flow fields
+      clearErrors(['fullName', 'emailAddress', 'countryCode', 'phoneNumber', 'currentCountry', 'studyDestinations']);
+    }
+    prevContactPref.current = contactPreference;
+  }, [contactPreference, setValue, clearErrors]);
 
   const onSubmit = async (data) => {
     // Save step 4 data to Zustand
@@ -84,7 +107,7 @@ const Step4_ContactPreference = () => {
   return (
     <form id="step4-form" onSubmit={handleSubmit(onSubmit)} className="w-full">
       <h2 className="text-[16px] font-semibold leading-[24px] tracking-normal text-[#333333]">
-        Would you like us to contact you about your Complaint?
+        Would you like us to contact you about your Complaint? <span className="text-[#EF4444]">*</span>
       </h2>
 
       {/* Yes / No Radio */}
@@ -119,7 +142,7 @@ const Step4_ContactPreference = () => {
           {/* Name */}
           <div>
             <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
-              Name
+              Name <span className="text-[#EF4444]">*</span>
             </label>
             <input
               type="text"
@@ -137,7 +160,7 @@ const Step4_ContactPreference = () => {
           {/* Email */}
           <div>
             <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
-              Best email address
+              Best email address <span className="text-[#EF4444]">*</span>
             </label>
             <input
               type="email"
@@ -156,7 +179,7 @@ const Step4_ContactPreference = () => {
           <div className="flex gap-4">
             <div className="w-[180px]">
               <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
-                Country code
+                Country code <span className="text-[#EF4444]">*</span>
               </label>
               <div className="relative">
                 <select
@@ -182,7 +205,7 @@ const Step4_ContactPreference = () => {
             </div>
             <div className="flex-1">
               <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
-                Best contact phone number
+                Best contact phone number <span className="text-[#EF4444]">*</span>
               </label>
               <input
                 type="text"
@@ -204,7 +227,7 @@ const Step4_ContactPreference = () => {
               Where are you currently located?
             </h3>
             <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
-              Country
+              Country <span className="text-[#EF4444]">*</span>
             </label>
             <div className="relative">
               <select
@@ -232,7 +255,7 @@ const Step4_ContactPreference = () => {
           {/* Study Destinations */}
           <div>
             <h3 className="text-[16px] font-semibold leading-[24px] tracking-normal text-[#333333] mb-3">
-              Where are you hoping to study in the future?
+              Where are you hoping to study in the future? <span className="text-[#EF4444]">*</span>
             </h3>
             <Controller
               name="studyDestinations"
@@ -260,7 +283,37 @@ const Step4_ContactPreference = () => {
                 </div>
               )}
             />
+            {errors.studyDestinations && (
+              <p className="mt-2 text-[13px] text-red-500">{errors.studyDestinations.message}</p>
+            )}
           </div>
+        </div>
+      )}
+
+      {/* Privacy Policy Checkbox - shown in BOTH Yes and No flows */}
+      {contactPreference && (
+        <div className="mt-6">
+          <label className="flex items-start cursor-pointer">
+            <input
+              type="checkbox"
+              {...register('privacyPolicyAccepted')}
+              className="h-[16px] w-[16px] mt-[3px] text-blue-600 border-gray-400 rounded focus:ring-blue-500 focus:ring-2 focus:outline-none flex-shrink-0"
+            />
+            <span className="ml-3 text-[#333333] font-normal text-[14px] leading-[21px] tracking-normal">
+              I have read and accept the{' '}
+              <a href="https://www.idp.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#2563eb] underline">
+                Privacy Policy
+              </a>{' '}
+              and{' '}
+              <a href="https://www.idp.com/terms" target="_blank" rel="noopener noreferrer" className="text-[#2563eb] underline">
+                Terms of Use
+              </a>
+              . <span className="text-[#EF4444]">*</span>
+            </span>
+          </label>
+          {errors.privacyPolicyAccepted && (
+            <p className="mt-1 ml-[28px] text-[13px] text-red-500">{errors.privacyPolicyAccepted.message}</p>
+          )}
         </div>
       )}
 

@@ -3,19 +3,20 @@ import * as yup from 'yup';
 export const step4Schema = yup.object().shape({
   contactPreference: yup
     .string()
-    .required('Please select whether you would like us to contact you.'),
+    .required('Please answer this question'),
   fullName: yup
     .string()
     .when('contactPreference', {
       is: 'yes',
       then: (schema) => schema
-        .required('Please enter your full name.')
+        .required('Enter a valid name')
         .test(
           'not-only-spaces',
-          'Full name must not contain only spaces.',
+          'Enter a valid name',
           (value) => value && value.trim().length > 0
         )
-        .max(100, 'Full name must not exceed 100 characters.'),
+        .matches(/^[a-zA-Z\s]+$/, 'Enter a valid name')
+        .max(200, 'Enter a valid name'),
       otherwise: (schema) => schema.notRequired(),
     }),
   emailAddress: yup
@@ -23,15 +24,15 @@ export const step4Schema = yup.object().shape({
     .when('contactPreference', {
       is: 'yes',
       then: (schema) => schema
-        .required('Please enter your email address.')
-        .email('Please enter a valid email address.'),
+        .required('Enter a valid email address')
+        .email('Enter a valid email address'),
       otherwise: (schema) => schema.notRequired(),
     }),
   countryCode: yup
     .string()
     .when('contactPreference', {
       is: 'yes',
-      then: (schema) => schema.required('Please select your country code.'),
+      then: (schema) => schema.required('Enter a valid mobile number'),
       otherwise: (schema) => schema.notRequired(),
     }),
   phoneNumber: yup
@@ -39,18 +40,31 @@ export const step4Schema = yup.object().shape({
     .when('contactPreference', {
       is: 'yes',
       then: (schema) => schema
-        .required('Please enter your phone number.')
-        .matches(/^\d+$/, 'Phone number must contain numeric values only.')
-        .min(7, 'Please enter a valid phone number.')
-        .max(15, 'Please enter a valid phone number.'),
+        .required('Enter a valid mobile number')
+        .matches(/^[\d\s\-()]+$/, 'Enter a valid mobile number')
+        .test('min-digits', 'Enter a valid mobile number', (value) => {
+          if (!value) return false;
+          const digitsOnly = value.replace(/\D/g, '');
+          return digitsOnly.length >= 7 && digitsOnly.length <= 15;
+        }),
       otherwise: (schema) => schema.notRequired(),
     }),
   currentCountry: yup
     .string()
     .when('contactPreference', {
       is: 'yes',
-      then: (schema) => schema.required('Please select your current country.'),
+      then: (schema) => schema.required('Please answer this question'),
       otherwise: (schema) => schema.notRequired(),
     }),
-  studyDestinations: yup.array().of(yup.string()),
+  studyDestinations: yup
+    .array()
+    .when('contactPreference', {
+      is: 'yes',
+      then: (schema) => schema.of(yup.string()).min(1, 'Please answer this question'),
+      otherwise: (schema) => schema.of(yup.string()),
+    }),
+  privacyPolicyAccepted: yup
+    .boolean()
+    .oneOf([true], 'Please accept the Privacy Policy to continue')
+    .required('Please accept the Privacy Policy to continue'),
 });

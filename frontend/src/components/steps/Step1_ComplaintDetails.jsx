@@ -23,6 +23,7 @@ const Step1_ComplaintDetails = () => {
     defaultValues: {
       description: step1Data.description,
     },
+    mode: 'onBlur',
   });
 
   const descriptionValue = watch('description') || '';
@@ -38,7 +39,7 @@ const Step1_ComplaintDetails = () => {
     <form id="step1-form" onSubmit={handleSubmit(onSubmit)} className="w-full">
       {/* Label */}
       <label className="block text-[#333333] font-semibold text-[16px] leading-[24px] tracking-normal">
-        Can you please describe what&apos;s happened?
+        Can you please describe what&apos;s happened? <span className="text-[#EF4444]">*</span>
       </label>
 
       {/* Helper text */}

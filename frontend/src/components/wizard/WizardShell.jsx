@@ -11,6 +11,7 @@ import ConfirmationScreen from '../steps/ConfirmationScreen';
 const WizardShell = () => {
   const currentStep = useWizardStore((state) => state.currentStep);
   const isSubmitting = useWizardStore((state) => state.isSubmitting);
+  const privacyAccepted = useWizardStore((state) => state.formData.privacyPolicyAccepted);
   const goPrevious = useWizardStore((state) => state.goPrevious);
 
   const handlePrevious = () => {
@@ -58,6 +59,7 @@ const WizardShell = () => {
           totalSteps={4}
           onPrevious={handlePrevious}
           isSubmitting={isSubmitting}
+          canSubmit={currentStep === 4 ? privacyAccepted : true}
         />
       )}
     </div>

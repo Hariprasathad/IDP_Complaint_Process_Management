@@ -111,7 +111,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
   return (
     <div className="w-full">
       {label && (
-        <label className="block text-[#333333] font-semibold text-[16px] leading-[24px] tracking-normal w-[488px]">
+        <label className="block text-[#333333] font-semibold text-[16px] leading-[24px] tracking-normal w-full max-w-[488px]">
           {label}
         </label>
       )}

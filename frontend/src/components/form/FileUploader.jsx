@@ -117,7 +117,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
       )}
       
       <div 
-        className={`w-full h-[129px] rounded-[10px] bg-[#FAFBFC] text-center cursor-pointer transition-colors flex flex-col items-center justify-center mt-3 pt-[30px] pb-[30px] ${
+        className={`w-full h-[129px] rounded-[10px] bg-[#FAFBFC] text-center cursor-pointer transition-colors flex flex-col items-center justify-center mt-4 pt-[30px] pb-[30px] ${
           isDragging ? 'bg-blue-50' : ''
         }`}
         style={{

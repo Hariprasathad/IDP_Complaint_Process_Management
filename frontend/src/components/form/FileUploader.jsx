@@ -170,7 +170,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
                 href={file.file ? URL.createObjectURL(file.file) : '#'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#2563EB] text-[16px] font-normal no-underline hover:underline overflow-hidden text-ellipsis whitespace-nowrap max-w-[85%] cursor-pointer"
+                className="text-[#2563EB] text-[14px] font-normal leading-[20px] no-underline hover:underline overflow-hidden text-ellipsis whitespace-nowrap max-w-[85%] cursor-pointer"
                 onClick={(e) => e.stopPropagation()}
               >
                 {file.name}

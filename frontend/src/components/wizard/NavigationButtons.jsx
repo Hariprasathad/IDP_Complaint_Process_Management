@@ -26,7 +26,7 @@ const NavigationButtons = ({
             type="button"
             onClick={onPrevious}
             disabled={isSubmitting}
-            className="w-[139px] h-[44px] rounded-[24px] border border-[#4664DC] bg-white px-[24px] py-[10px] flex items-center justify-center text-[#4664DC] text-[16px] font-semibold leading-[24px] tracking-normal shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] transition-colors hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#4664DC]/30"
+            className="w-[139px] h-[44px] rounded-[24px] border border-[#4664DC] bg-white px-[24px] py-[10px] flex items-center justify-center text-[#4664DC] text-[16px] font-semibold leading-[24px] tracking-normal shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] cursor-pointer transition-all duration-200 ease hover:bg-[#3D58CC] hover:text-white hover:border-[#3D58CC] focus:outline-none focus:ring-2 focus:ring-[#4664DC]/30"
           >
             ← Previous
           </button>
@@ -39,7 +39,7 @@ const NavigationButtons = ({
               type="submit"
               form={formId}
               disabled={isSubmitting}
-              className="w-[85px] h-[44px] rounded-[24px] bg-[#4664DC] px-[24px] py-[10px] flex items-center justify-center text-white text-[16px] font-medium leading-[24px] tracking-normal transition-colors hover:bg-[#3D58CC] focus:outline-none focus:ring-2 focus:ring-[#4664DC]/30 disabled:opacity-50"
+              className="w-[85px] h-[44px] rounded-[24px] bg-[#4664DC] px-[24px] py-[10px] flex items-center justify-center text-white text-[16px] font-medium leading-[24px] tracking-normal cursor-pointer transition-all duration-200 ease hover:bg-[#3D58CC] focus:outline-none focus:ring-2 focus:ring-[#4664DC]/30 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Next
             </button>
@@ -48,7 +48,7 @@ const NavigationButtons = ({
               type="submit"
               form={formId}
               disabled={isSubmitting}
-              className="h-[44px] rounded-[24px] bg-[#4664DC] px-[24px] py-[10px] flex items-center justify-center text-white text-[16px] font-medium leading-[24px] tracking-normal transition-colors hover:bg-[#3D58CC] focus:outline-none focus:ring-2 focus:ring-[#4664DC]/30 disabled:opacity-50"
+              className="h-[44px] rounded-[24px] bg-[#4664DC] px-[24px] py-[10px] flex items-center justify-center text-white text-[16px] font-medium leading-[24px] tracking-normal cursor-pointer transition-all duration-200 ease hover:bg-[#3D58CC] focus:outline-none focus:ring-2 focus:ring-[#4664DC]/30 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? 'Submitting...' : 'Submit complaint'}
             </button>

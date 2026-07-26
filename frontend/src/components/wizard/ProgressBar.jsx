@@ -2,7 +2,7 @@ import React from 'react';
 
 const ProgressBar = ({ currentStep, totalSteps = 4 }) => {
   return (
-    <div className="w-full mb-4 mt-0">
+    <div className="w-full">
       <div className="flex justify-end mb-1">
         <span className="text-[14px] text-[#6B7280] font-medium leading-[14px] tracking-normal">Step {currentStep} of {totalSteps}</span>
       </div>

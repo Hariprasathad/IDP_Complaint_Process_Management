@@ -38,36 +38,34 @@ const Step3_WhoIsLodging = () => {
 
   return (
     <form id="step3-form" onSubmit={handleSubmit(onSubmit)} className="w-full">
-      <h2 className="text-[16px] font-semibold leading-[24px] tracking-normal text-[#333333]">
+      <h2 className="text-[16px] font-semibold leading-[24px] tracking-normal text-[#333333] mb-5">
         Which of the following best describes you?
       </h2>
 
-      <div className="mt-4 space-y-4">
+      <div className="flex flex-col gap-[16px]">
         {options.map((option) => (
-          <label key={option.value} className="flex items-start cursor-pointer group">
-            <div className="flex items-center h-6">
-              <input
-                type="radio"
-                value={option.value}
-                {...register('complainantType')}
-                className="w-[16px] h-[16px] text-blue-600 border-gray-400 focus:ring-blue-500 bg-white"
-              />
-            </div>
-            <div className="ml-3 text-[#333333] font-normal text-[15px] leading-[24px] tracking-normal">
+          <label key={option.value} className="flex items-center cursor-pointer">
+            <input
+              type="radio"
+              value={option.value}
+              {...register('complainantType')}
+              className="w-[18px] h-[18px] text-blue-600 border-gray-400 focus:ring-blue-500 bg-white flex-shrink-0"
+            />
+            <span className="ml-3 text-[#333333] font-normal text-[15px] leading-[24px] tracking-normal">
               {option.label}
-            </div>
+            </span>
           </label>
         ))}
       </div>
 
       {/* Validation error for radio group */}
       {errors.complainantType && (
-        <p className="mt-2 text-[13px] text-red-500">{errors.complainantType.message}</p>
+        <p className="mt-3 text-[13px] text-red-500">{errors.complainantType.message}</p>
       )}
 
       {/* Other - Please Specify input */}
       {complainantType === 'other' && (
-        <div className="ml-7 mt-3">
+        <div className="mt-3 ml-[30px]">
           <input
             type="text"
             {...register('complainantTypeOther')}

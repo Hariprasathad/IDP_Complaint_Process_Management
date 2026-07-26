@@ -59,7 +59,6 @@ const Step4_ContactPreference = () => {
       phoneNumber: step4Data.phoneNumber,
       currentCountry: step4Data.currentCountry,
       studyDestinations: step4Data.studyDestinations,
-      privacyPolicyAccepted: step4Data.privacyPolicyAccepted,
     },
   });
 
@@ -265,27 +264,6 @@ const Step4_ContactPreference = () => {
         </div>
       )}
 
-      {/* Privacy Policy - always shown when preference is selected */}
-      {contactPreference && (
-        <div className="mt-6">
-          <label className="flex items-center cursor-pointer">
-            <input
-              type="checkbox"
-              {...register('privacyPolicyAccepted')}
-              className="h-[16px] w-[16px] text-blue-600 border-gray-400 rounded focus:ring-blue-500 focus:ring-2 focus:outline-none"
-            />
-            <span className="ml-3 text-[#333333] font-normal text-[15px] leading-[24px] tracking-normal">
-              I accept the{' '}
-              <a href="#" target="_blank" rel="noopener noreferrer" className="text-[#2563eb] underline decoration-solid">
-                Privacy Policy
-              </a>
-            </span>
-          </label>
-          {errors.privacyPolicyAccepted && (
-            <p className="mt-1 text-[13px] text-red-500 ml-7">{errors.privacyPolicyAccepted.message}</p>
-          )}
-        </div>
-      )}
     </form>
   );
 };

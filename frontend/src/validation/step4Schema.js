@@ -53,7 +53,4 @@ export const step4Schema = yup.object().shape({
       otherwise: (schema) => schema.notRequired(),
     }),
   studyDestinations: yup.array().of(yup.string()),
-  privacyPolicyAccepted: yup
-    .boolean()
-    .oneOf([true], 'You must accept the Privacy Policy to submit your complaint.'),
 });

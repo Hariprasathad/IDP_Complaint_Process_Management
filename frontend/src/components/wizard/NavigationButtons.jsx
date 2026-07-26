@@ -19,7 +19,7 @@ const NavigationButtons = ({
       {/* Divider */}
       <div className="w-full h-px bg-[#D9D9D9]" />
       
-      <div className="flex justify-between items-center w-full pt-[24px]">
+      <div className="flex justify-between items-center w-full pt-[14px]">
         {/* Previous Button */}
         <div className={`transition-opacity duration-300 ${currentStep === 1 ? 'invisible' : 'visible'}`}>
           <button

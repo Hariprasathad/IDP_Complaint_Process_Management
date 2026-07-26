@@ -18,10 +18,10 @@ const WizardShell = () => {
   };
 
   return (
-    <div className="w-full max-w-[824px] mx-auto flex flex-col gap-[16px] pt-[40px] pr-[40px] pb-[32px] pl-[40px]">
+    <div className="w-full max-w-[824px] mx-auto flex flex-col pt-[40px] pr-[40px] pb-[32px] pl-[40px]">
       {/* Page Header - Step 1 only */}
       {currentStep === 1 && (
-        <div className="w-full max-w-[820px] flex flex-col gap-[12px]">
+        <div className="w-full max-w-[820px] flex flex-col gap-[12px] mb-[24px]">
           <h1 className="text-[36px] font-bold text-[#333333] leading-[47px] tracking-normal" style={{ fontFamily: "'Farro', sans-serif" }}>Complaints</h1>
           <p className="text-[16px] font-normal text-[#333333] leading-[24px] tracking-normal">
             Please complete the information below so we can understand your situation better.
@@ -36,14 +36,14 @@ const WizardShell = () => {
 
       {/* Progress bar + Divider */}
       {currentStep < 5 && (
-        <div className="w-full flex flex-col gap-[8px]">
+        <div className="w-full flex flex-col gap-[20px] mb-[24px]">
           <ProgressBar currentStep={currentStep} totalSteps={4} />
-          <div className="w-full max-w-[820px] h-px bg-[#D9D9D9]" />
+          {currentStep === 1 && <div className="w-full h-px bg-[#D9D9D9]" />}
         </div>
       )}
       
       {/* Step content */}
-      <div className="w-full">
+      <div className="w-full mb-[16px]">
         {currentStep === 1 && <Step1_ComplaintDetails />}
         {currentStep === 2 && <Step2_IncidentLocation />}
         {currentStep === 3 && <Step3_WhoIsLodging />}

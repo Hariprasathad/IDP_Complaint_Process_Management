@@ -111,8 +111,8 @@ const Step4_ContactPreference = () => {
 
       {/* Contact Details (Yes flow) */}
       {contactPreference === 'yes' && (
-        <div className="mt-6 w-full max-w-[820px] p-[20px] bg-[#F4F6FB] border border-[#DDE3F0] rounded-[10px] flex flex-col gap-[16px]">
-          <p className="text-[16px] font-normal leading-[24px] tracking-normal text-[#333333]">
+        <div className="mt-6 w-full max-w-[820px] p-[16px] bg-[#F4F6FB] border border-[#DDE3F0] rounded-[10px] flex flex-col gap-[14px]">
+          <p className="text-[15px] font-normal leading-[22px] tracking-normal text-[#333333]">
             So we can get in touch with you, please complete the following.
           </p>
 
@@ -238,7 +238,7 @@ const Step4_ContactPreference = () => {
               name="studyDestinations"
               control={control}
               render={({ field }) => (
-                <div className="grid grid-cols-2 gap-x-8 gap-y-3">
+                <div className="grid grid-cols-2 gap-x-8 gap-y-2">
                   {studyDestinationOptions.map((destination) => (
                     <label key={destination} className="flex items-center cursor-pointer">
                       <input

@@ -122,7 +122,7 @@ const Step2_IncidentLocation = () => {
           </div>
 
           {/* Other checkbox */}
-          <div className="mb-3">
+          <div>
             <label className="flex items-center cursor-pointer">
               <input
                 type="checkbox"

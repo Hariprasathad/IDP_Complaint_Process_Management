@@ -117,7 +117,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
       )}
       
       <div 
-        className={`w-full h-[129px] rounded-[10px] bg-[#FAFBFC] text-center cursor-pointer transition-colors flex flex-col items-center justify-center mt-4 pt-[30px] pb-[30px] ${
+        className={`w-full min-h-[140px] rounded-[10px] bg-[#FAFBFC] text-center cursor-pointer transition-colors flex flex-col items-center justify-center mt-4 py-[24px] flex-shrink-0 ${
           isDragging ? 'bg-blue-50' : ''
         }`}
         style={{
@@ -138,8 +138,8 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
         />
         
         <div className="flex flex-col items-center justify-center gap-[8px]">
-          <svg className="w-5 h-5 text-[#5C656E]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+          <svg className="w-5 h-5 text-[#3D4B5C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
           </svg>
           <p className="text-[15px] font-medium leading-[15px] tracking-normal text-[#333333]">
             Drag files here or <span className="text-[#2563eb] underline decoration-solid cursor-pointer">Browse</span>

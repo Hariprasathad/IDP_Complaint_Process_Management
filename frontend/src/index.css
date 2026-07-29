@@ -33,3 +33,34 @@
     flex-direction: column;
   }
 }
+
+/* IDP Input field focus styles - matches Partner Portal */
+@layer components {
+  input,
+  select,
+  textarea {
+    border-width: 1px !important;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: rgb(8, 116, 231) !important;
+    box-shadow: 0 0 0 3px rgba(25, 116, 231, 0.25) !important;
+    outline: none;
+  }
+
+  /* Error state - red border */
+  input.border-red-500,
+  select.border-red-500,
+  textarea.border-red-500 {
+    border-color: rgb(188, 0, 0) !important;
+  }
+
+  input.border-red-500:focus,
+  select.border-red-500:focus,
+  textarea.border-red-500:focus {
+    border-color: rgb(188, 0, 0) !important;
+    box-shadow: 0 0 0 3px rgba(188, 0, 0, 0.25) !important;
+  }
+}

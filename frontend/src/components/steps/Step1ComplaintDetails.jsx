@@ -23,8 +23,7 @@ const Step1_ComplaintDetails = () => {
     defaultValues: {
       description: formData.description,
     },
-    mode: 'onBlur',
-    reValidateMode: 'onChange',
+    mode: 'all',
   });
 
   // Auto-save to Zustand on every change
@@ -51,7 +50,9 @@ const Step1_ComplaintDetails = () => {
 
       {/* Textarea */}
       <textarea
-        {...register('description')}
+        {...register('description', {
+          onBlur: () => { if (!descriptionValue) setIsFocused(false); }
+        })}
         onFocus={() => setIsFocused(true)}
         maxLength={MAX_DESCRIPTION_LENGTH}
         placeholder="Start typing your complaint here..."

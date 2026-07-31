@@ -111,11 +111,6 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
     setIsExpanded((prev) => !prev);
   };
 
-  // Determine which files to show
-  const visibleFiles = isExpanded
-    ? attachments
-    : attachments.slice(0, VISIBLE_FILES_COUNT);
-
   const hiddenCount = attachments.length - VISIBLE_FILES_COUNT;
 
   return (
@@ -128,7 +123,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
       
       {/* Upload area */}
       <div 
-        className={`w-full min-h-[140px] rounded-[10px] bg-[#FAFBFC] text-center transition-colors flex flex-col items-center justify-center mt-4 py-[24px] flex-shrink-0 ${
+        className={`w-full min-h-[140px] rounded-[10px] bg-[#FAFBFC] text-center cursor-pointer transition-colors flex flex-col items-center justify-center mt-4 py-[24px] flex-shrink-0 ${
           isDragging ? 'bg-blue-50' : ''
         }`}
         style={{
@@ -137,6 +132,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
+        onClick={handleClick}
       >
         <input 
           type="file" 
@@ -166,8 +162,8 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
       {/* File list */}
       {attachments.length > 0 && (
         <div className="mt-4 flex flex-col gap-[8px]">
-          {/* Visible files */}
-          {visibleFiles.map((file) => (
+          {/* First 3 files - always visible */}
+          {attachments.slice(0, VISIBLE_FILES_COUNT).map((file) => (
             <div 
               key={file.id} 
               className={`flex items-center justify-between px-[16px] py-[10px] min-h-[52px] bg-white border border-[#E5E7EB] rounded-[10px] cursor-default hover:bg-[#F8FAFC] hover:border-[#D1D5DB] transition-all duration-200 ease-in-out ${
@@ -175,7 +171,8 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
               }`}
               style={{ transition: 'all 200ms ease-out' }}
             >
-              <div className="flex items-center gap-3 overflow-hidden max-w-[85%]">
+              <div className="flex items-center gap-[12px] overflow-hidden min-w-0 flex-1">
+                <img src="/fileuploadicon.svg" alt="File" className="w-[20px] h-[20px] flex-shrink-0" />
                 <a
                   href={file.file ? URL.createObjectURL(file.file) : '#'}
                   target="_blank"
@@ -190,7 +187,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
               <button
                 type="button"
                 onClick={(e) => { e.stopPropagation(); handleRemoveFile(file.id); }}
-                className="w-[32px] h-[32px] flex items-center justify-center bg-transparent border-none cursor-pointer rounded-full p-[8px] transition-colors duration-200 hover:bg-[#FFEEEE] focus:outline-none"
+                className="w-[32px] h-[32px] flex-shrink-0 flex items-center justify-center bg-transparent border-none cursor-pointer rounded-full p-[8px] transition-colors duration-200 hover:bg-[#FFEEEE] focus:outline-none"
                 aria-label={`Remove ${file.name}`}
               >
                 <img src="/deleteicon.svg" alt="Delete" className="w-[16px] h-[16px]" />
@@ -198,25 +195,69 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
             </div>
           ))}
 
+          {/* Expandable files (4+) - animated container */}
+          {hiddenCount > 0 && (
+            <div 
+              className="flex flex-col gap-[8px] overflow-hidden transition-all duration-200 ease-out"
+              style={{
+                maxHeight: isExpanded ? `${(hiddenCount) * 68}px` : '0px',
+                opacity: isExpanded ? 1 : 0,
+              }}
+            >
+              {attachments.slice(VISIBLE_FILES_COUNT).map((file, index) => (
+                <div 
+                  key={file.id} 
+                  className={`flex items-center justify-between px-[16px] py-[10px] min-h-[52px] bg-white border border-[#E5E7EB] rounded-[10px] cursor-default hover:bg-[#F8FAFC] hover:border-[#D1D5DB] transition-all duration-200 ease-out ${
+                    removingIds.includes(file.id) ? 'opacity-0 -translate-y-1 max-h-0 py-0 my-0 overflow-hidden' : ''
+                  }`}
+                  style={{
+                    opacity: isExpanded ? 1 : 0,
+                    transform: isExpanded ? 'translateY(0)' : 'translateY(4px)',
+                    transition: `opacity 180ms ease-out ${index * 30}ms, transform 180ms ease-out ${index * 30}ms`,
+                  }}
+                >
+                  <div className="flex items-center gap-[12px] overflow-hidden min-w-0 flex-1">
+                    <img src="/fileuploadicon.svg" alt="File" className="w-[20px] h-[20px] flex-shrink-0" />
+                    <a
+                      href={file.file ? URL.createObjectURL(file.file) : '#'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title={file.name}
+                      className="text-[#2563EB] text-[14px] font-normal leading-[20px] no-underline hover:underline overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {file.name}
+                    </a>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={(e) => { e.stopPropagation(); handleRemoveFile(file.id); }}
+                    className="w-[32px] h-[32px] flex-shrink-0 flex items-center justify-center bg-transparent border-none cursor-pointer rounded-full p-[8px] transition-colors duration-200 hover:bg-[#FFEEEE] focus:outline-none"
+                    aria-label={`Remove ${file.name}`}
+                  >
+                    <img src="/deleteicon.svg" alt="Delete" className="w-[16px] h-[16px]" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
+
           {/* Expand/Collapse button */}
           {hiddenCount > 0 && (
             <button
               type="button"
               onClick={toggleExpand}
               aria-expanded={isExpanded}
-              className="flex items-center gap-2 px-[16px] py-[8px] text-[14px] font-medium text-[#4664DC] cursor-pointer bg-transparent border-none hover:text-[#3D58CC] transition-colors duration-200"
+              className="w-full flex items-center gap-2 px-[16px] py-[8px] text-[14px] font-medium text-[#4664DC] cursor-pointer bg-transparent border-none hover:text-[#0657AD] transition-colors duration-200"
             >
               <span>
-                {isExpanded ? 'Show less' : `+${hiddenCount} more file${hiddenCount > 1 ? 's' : ''}`}
+                {isExpanded ? 'Show less' : `Show ${hiddenCount} more file${hiddenCount > 1 ? 's' : ''}`}
               </span>
-              <svg 
-                className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
+              <img 
+                src={isExpanded ? '/upicon.svg' : '/downicon.svg'} 
+                alt={isExpanded ? 'Collapse' : 'Expand'} 
+                className="w-4 h-4 transition-transform duration-200" 
+              />
             </button>
           )}
         </div>

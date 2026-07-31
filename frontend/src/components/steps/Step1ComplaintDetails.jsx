@@ -24,6 +24,7 @@ const Step1_ComplaintDetails = () => {
       description: formData.description,
     },
     mode: 'onBlur',
+    reValidateMode: 'onChange',
   });
 
   // Auto-save to Zustand on every change
@@ -33,11 +34,8 @@ const Step1_ComplaintDetails = () => {
   }, [descriptionValue, saveStep1]);
 
   const onSubmit = () => {
-    // Data already saved — just navigate
     goNext();
   };
-
-  const { onBlur: rhfOnBlur, ...descriptionRegister } = register('description');
 
   return (
     <form id="step1-form" onSubmit={handleSubmit(onSubmit)} className="w-full">
@@ -53,12 +51,8 @@ const Step1_ComplaintDetails = () => {
 
       {/* Textarea */}
       <textarea
-        {...descriptionRegister}
+        {...register('description')}
         onFocus={() => setIsFocused(true)}
-        onBlur={(e) => {
-          rhfOnBlur(e);
-          if (!descriptionValue) setIsFocused(false);
-        }}
         maxLength={MAX_DESCRIPTION_LENGTH}
         placeholder="Start typing your complaint here..."
         className={`w-full min-h-[150px] max-h-[300px] rounded-[8px] border bg-white px-[16px] pt-[14px] pb-[14px] text-[16px] leading-[24px] font-normal text-[#333333] tracking-normal placeholder:text-[#98A2B3] placeholder:text-[16px] placeholder:leading-[24px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] overflow-y-auto overflow-x-hidden resize-y outline-none focus:border-[#5C656E] mt-5 ${

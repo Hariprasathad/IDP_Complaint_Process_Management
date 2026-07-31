@@ -148,9 +148,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
         />
         
         <div className="flex flex-col items-center justify-center gap-[8px]">
-          <svg className="w-5 h-5 text-[#3D4B5C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-          </svg>
+          <img src="/fileicon.svg" alt="Upload" className="w-[14px] h-[14px]" />
           <p className="text-[15px] font-medium leading-[15px] tracking-normal text-[#333333]">
             Drag files here or <span onClick={handleClick} className="text-[#2563eb] underline decoration-solid cursor-pointer">Browse</span>
           </p>
@@ -182,25 +180,20 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
                   href={file.file ? URL.createObjectURL(file.file) : '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#2563EB] text-[14px] font-normal leading-[20px] no-underline hover:underline cursor-pointer"
+                  title={file.name}
+                  className="text-[#2563EB] text-[14px] font-normal leading-[20px] no-underline hover:underline overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {(() => {
-                    const ext = file.name.lastIndexOf('.') > 0 ? file.name.substring(file.name.lastIndexOf('.')) : '';
-                    const name = file.name.lastIndexOf('.') > 0 ? file.name.substring(0, file.name.lastIndexOf('.')) : file.name;
-                    return name.length > 30 ? name.substring(0, 30) + '...' + ext : file.name;
-                  })()}
+                  {file.name}
                 </a>
               </div>
               <button
                 type="button"
                 onClick={(e) => { e.stopPropagation(); handleRemoveFile(file.id); }}
-                className="w-[32px] h-[32px] flex items-center justify-center text-[#9CA3AF] bg-transparent border-none cursor-pointer hover:text-[#DC2626] transition-[color] duration-200 ease-in-out rounded-full"
+                className="w-[32px] h-[32px] flex items-center justify-center bg-transparent border-none cursor-pointer rounded-full p-[8px] transition-colors duration-200 hover:bg-[#FFEEEE] focus:outline-none"
                 aria-label={`Remove ${file.name}`}
               >
-                <svg className="w-[16px] h-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <img src="/deleteicon.svg" alt="Delete" className="w-[16px] h-[16px]" />
               </button>
             </div>
           ))}

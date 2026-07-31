@@ -30,7 +30,7 @@ const Step2_IncidentLocation = () => {
       isOther: formData.isOther,
       onlineSpecify: formData.onlineSpecify,
     },
-    mode: 'onBlur',
+    mode: 'all',
   });
 
   // Auto-save all fields to Zustand on every change

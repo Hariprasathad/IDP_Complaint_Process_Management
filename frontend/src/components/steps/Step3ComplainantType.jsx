@@ -27,7 +27,7 @@ const Step3_WhoIsLodging = () => {
       complainantType: formData.complainantType,
       complainantTypeOther: formData.complainantTypeOther,
     },
-    mode: 'onBlur',
+    mode: 'all',
   });
 
   // Auto-save to Zustand on every change

@@ -8,7 +8,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
   const [isDragging, setIsDragging] = useState(false);
   const [removingIds, setRemovingIds] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [validationError, setValidationError] = useState('');
+  const [validationErrors, setValidationErrors] = useState([]);
   
   const attachments = useWizardStore((state) => state.formData.attachments);
   const addAttachment = useWizardStore((state) => state.addAttachment);
@@ -23,48 +23,70 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
     'image/png',
   ];
 
-  const validateFile = (file) => {
-    if (file.size > maxSizeMB * 1024 * 1024) {
-      return `File "${file.name}" exceeds ${maxSizeMB} MB.`;
-    }
-    if (!SUPPORTED_TYPES.includes(file.type)) {
-      return `File "${file.name}" is not supported. Allowed: PDF, DOC, DOCX, JPG, JPEG, PNG.`;
-    }
-    return null;
-  };
-
   const handleFiles = (files) => {
-    setValidationError('');
+    setValidationErrors([]);
 
     const remainingSlots = maxFiles - attachments.length;
     if (remainingSlots <= 0) {
-      setValidationError(`You can upload a maximum of ${maxFiles} files.`);
+      setValidationErrors(['Maximum file limit reached.']);
       return;
     }
 
-    const filesToProcess = Array.from(files).slice(0, remainingSlots);
-    const rejectedCount = Array.from(files).length - filesToProcess.length;
+    const allFiles = Array.from(files);
+    const errors = [];
+    const sizeErrors = [];
+    const formatErrors = [];
+    let addedCount = 0;
+    let limitRejected = 0;
 
-    filesToProcess.forEach((file) => {
-      const error = validateFile(file);
-      if (error) {
-        setValidationError(error);
-      } else {
-        const attachment = {
-          id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-          file,
-          name: file.name,
-          size: file.size,
-          type: file.type,
-          progress: 100,
-          status: 'completed',
-        };
-        addAttachment(attachment);
+    for (const file of allFiles) {
+      // Check format first
+      if (file.size > maxSizeMB * 1024 * 1024) {
+        sizeErrors.push(file.name);
+        continue;
       }
-    });
+      if (!SUPPORTED_TYPES.includes(file.type)) {
+        formatErrors.push(file.name);
+        continue;
+      }
+      // Valid file — check if there's room
+      if (addedCount + attachments.length >= maxFiles) {
+        limitRejected++;
+        continue;
+      }
+      // Add the file
+      const attachment = {
+        id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+        file,
+        name: file.name,
+        size: file.size,
+        type: file.type,
+        progress: 100,
+        status: 'completed',
+      };
+      addAttachment(attachment);
+      addedCount++;
+    }
 
-    if (rejectedCount > 0) {
-      setValidationError(`You can upload a maximum of ${maxFiles} files. ${rejectedCount} file(s) were not added.`);
+    // Build grouped error messages
+    if (sizeErrors.length === 1) {
+      errors.push(`"${sizeErrors[0]}" exceeds the ${maxSizeMB} MB file size limit.`);
+    } else if (sizeErrors.length > 1) {
+      errors.push(`${sizeErrors.length} files exceed the ${maxSizeMB} MB file size limit.`);
+    }
+
+    if (formatErrors.length === 1) {
+      errors.push(`"${formatErrors[0]}" is not a supported file type. Allowed formats: PDF, DOC, DOCX, JPG, JPEG, PNG.`);
+    } else if (formatErrors.length > 1) {
+      errors.push(`${formatErrors.length} files are not supported. Allowed formats: PDF, DOC, DOCX, JPG, JPEG, PNG.`);
+    }
+
+    if (limitRejected > 0) {
+      errors.push(`Maximum file limit reached. ${limitRejected} ${limitRejected === 1 ? 'file was' : 'files were'} not added.`);
+    }
+
+    if (errors.length > 0) {
+      setValidationErrors(errors);
     }
   };
 
@@ -100,6 +122,10 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
     setTimeout(() => {
       removeAttachment(id);
       setRemovingIds((prev) => prev.filter((rid) => rid !== id));
+      // Clear validation error if files are now under the limit
+      if (attachments.length - 1 < maxFiles) {
+        setValidationErrors([]);
+      }
       // If after removal we have 3 or fewer files, collapse
       if (attachments.length - 1 <= VISIBLE_FILES_COUNT) {
         setIsExpanded(false);
@@ -113,6 +139,8 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
 
   const hiddenCount = attachments.length - VISIBLE_FILES_COUNT;
 
+  const isMaxFilesReached = attachments.length >= maxFiles;
+
   return (
     <div className="w-full">
       {label && (
@@ -123,16 +151,16 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
       
       {/* Upload area */}
       <div 
-        className={`w-full min-h-[140px] rounded-[10px] bg-[#FAFBFC] text-center cursor-pointer transition-colors flex flex-col items-center justify-center mt-4 py-[24px] flex-shrink-0 ${
-          isDragging ? 'bg-blue-50' : ''
-        }`}
+        className={`w-full min-h-[140px] rounded-[10px] text-center transition-colors flex flex-col items-center justify-center mt-4 py-[24px] flex-shrink-0 ${
+          isMaxFilesReached ? 'bg-[#F3F4F6] opacity-60 cursor-not-allowed' : 'bg-[#FAFBFC] cursor-pointer'
+        } ${isDragging && !isMaxFilesReached ? 'bg-blue-50' : ''}`}
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' fill='%23FAFBFC' rx='10' ry='10' stroke='${isDragging ? '%234664DC' : '%23B9C1CC'}' stroke-width='1.5' stroke-dasharray='6%2C 5' stroke-dashoffset='0' stroke-linecap='round'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Crect width='100%25' height='100%25' fill='${isMaxFilesReached ? '%23F3F4F6' : '%23FAFBFC'}' rx='10' ry='10' stroke='${isDragging && !isMaxFilesReached ? '%234664DC' : '%23B9C1CC'}' stroke-width='1.5' stroke-dasharray='6%2C 5' stroke-dashoffset='0' stroke-linecap='round'/%3E%3C/svg%3E")`,
         }}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-        onClick={handleClick}
+        onDragOver={!isMaxFilesReached ? handleDragOver : undefined}
+        onDragLeave={!isMaxFilesReached ? handleDragLeave : undefined}
+        onDrop={!isMaxFilesReached ? handleDrop : undefined}
+        onClick={!isMaxFilesReached ? handleClick : undefined}
       >
         <input 
           type="file" 
@@ -146,7 +174,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
         <div className="flex flex-col items-center justify-center gap-[8px]">
           <img src="/fileicon.svg" alt="Upload" className="w-[14px] h-[14px]" />
           <p className="text-[15px] font-medium leading-[15px] tracking-normal text-[#333333]">
-            Drag files here or <span onClick={handleClick} className="text-[#2563eb] underline decoration-solid cursor-pointer">Browse</span>
+            Drag files here or <span onClick={!isMaxFilesReached ? handleClick : undefined} className={`text-[#2563eb] underline decoration-solid ${isMaxFilesReached ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}>Browse</span>
           </p>
           <p className="text-[12px] font-normal leading-[12px] tracking-normal text-[#9AA1AB]">
             PDF, DOC, DOCX, JPG, JPEG, PNG — max {maxFiles} files, {maxSizeMB} MB each
@@ -154,9 +182,13 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
         </div>
       </div>
 
-      {/* Validation error message */}
-      {validationError && (
-        <p className="mt-2 text-[13px] text-red-500">{validationError}</p>
+      {/* Validation error messages */}
+      {validationErrors.length > 0 && (
+        <div className="mt-2 flex flex-col gap-1">
+          {validationErrors.map((error, index) => (
+            <p key={index} className="text-[13px] text-red-500">{error}</p>
+          ))}
+        </div>
       )}
 
       {/* File list */}

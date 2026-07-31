@@ -46,7 +46,7 @@ const Step4_ContactPreference = () => {
       currentCountry: formData.currentCountry,
       studyDestinations: formData.studyDestinations,
     },
-    mode: 'onBlur',
+    mode: 'all',
   });
 
   // Auto-save all fields to Zustand on every change

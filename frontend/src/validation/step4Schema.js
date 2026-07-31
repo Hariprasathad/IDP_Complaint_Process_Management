@@ -63,8 +63,4 @@ export const step4Schema = yup.object().shape({
       then: (schema) => schema.of(yup.string()).min(1, 'Please answer this question'),
       otherwise: (schema) => schema.of(yup.string()),
     }),
-  privacyPolicyAccepted: yup
-    .boolean()
-    .oneOf([true], 'Please accept the Privacy Policy to continue')
-    .required('Please accept the Privacy Policy to continue'),
 });

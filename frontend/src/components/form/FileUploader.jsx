@@ -1,10 +1,14 @@
 import React, { useRef, useState } from 'react';
 import useWizardStore from '../../store/wizardStore';
 
+const VISIBLE_FILES_COUNT = 3;
+
 const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
   const fileInputRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
   const [removingIds, setRemovingIds] = useState([]);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [validationError, setValidationError] = useState('');
   
   const attachments = useWizardStore((state) => state.formData.attachments);
   const addAttachment = useWizardStore((state) => state.addAttachment);
@@ -19,8 +23,6 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
     'image/png',
   ];
 
-  const [validationError, setValidationError] = useState('');
-
   const validateFile = (file) => {
     if (file.size > maxSizeMB * 1024 * 1024) {
       return `File "${file.name}" exceeds ${maxSizeMB} MB.`;
@@ -34,7 +36,6 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
   const handleFiles = (files) => {
     setValidationError('');
 
-    // Check max files limit first
     const remainingSlots = maxFiles - attachments.length;
     if (remainingSlots <= 0) {
       setValidationError(`You can upload a maximum of ${maxFiles} files.`);
@@ -99,14 +100,23 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
     setTimeout(() => {
       removeAttachment(id);
       setRemovingIds((prev) => prev.filter((rid) => rid !== id));
+      // If after removal we have 3 or fewer files, collapse
+      if (attachments.length - 1 <= VISIBLE_FILES_COUNT) {
+        setIsExpanded(false);
+      }
     }, 200);
   };
 
-  const formatFileSize = (bytes) => {
-    if (bytes < 1024) return bytes + ' B';
-    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
-    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  const toggleExpand = () => {
+    setIsExpanded((prev) => !prev);
   };
+
+  // Determine which files to show
+  const visibleFiles = isExpanded
+    ? attachments
+    : attachments.slice(0, VISIBLE_FILES_COUNT);
+
+  const hiddenCount = attachments.length - VISIBLE_FILES_COUNT;
 
   return (
     <div className="w-full">
@@ -116,6 +126,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
         </label>
       )}
       
+      {/* Upload area */}
       <div 
         className={`w-full min-h-[140px] rounded-[10px] bg-[#FAFBFC] text-center cursor-pointer transition-colors flex flex-col items-center justify-center mt-4 py-[24px] flex-shrink-0 ${
           isDragging ? 'bg-blue-50' : ''
@@ -158,7 +169,8 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
       {/* File list */}
       {attachments.length > 0 && (
         <div className="mt-4 flex flex-col gap-[8px]">
-          {attachments.map((file) => (
+          {/* Visible files */}
+          {visibleFiles.map((file) => (
             <div 
               key={file.id} 
               className={`flex items-center justify-between px-[16px] py-[10px] min-h-[52px] bg-white border border-[#E5E7EB] rounded-[10px] cursor-default hover:bg-[#F8FAFC] hover:border-[#D1D5DB] transition-all duration-200 ease-in-out ${
@@ -166,29 +178,51 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
               }`}
               style={{ transition: 'all 200ms ease-out' }}
             >
-              <a
-                href={file.file ? URL.createObjectURL(file.file) : '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#2563EB] text-[14px] font-normal leading-[20px] no-underline hover:underline overflow-hidden text-ellipsis whitespace-nowrap max-w-[85%] cursor-pointer"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {file.name}
-              </a>
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={(e) => { e.stopPropagation(); handleRemoveFile(file.id); }}
-                  className="w-[32px] h-[32px] flex items-center justify-center text-[#9CA3AF] bg-transparent border-none cursor-pointer hover:text-[#DC2626] transition-[color] duration-200 ease-in-out rounded-full"
-                  aria-label={`Remove ${file.name}`}
+              <div className="flex items-center gap-3 overflow-hidden max-w-[85%]">
+                <a
+                  href={file.file ? URL.createObjectURL(file.file) : '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#2563EB] text-[14px] font-normal leading-[20px] no-underline hover:underline overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer"
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  <svg className="w-[16px] h-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
+                  {file.name}
+                </a>
               </div>
+              <button
+                type="button"
+                onClick={(e) => { e.stopPropagation(); handleRemoveFile(file.id); }}
+                className="w-[32px] h-[32px] flex items-center justify-center text-[#9CA3AF] bg-transparent border-none cursor-pointer hover:text-[#DC2626] transition-[color] duration-200 ease-in-out rounded-full"
+                aria-label={`Remove ${file.name}`}
+              >
+                <svg className="w-[16px] h-[16px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
           ))}
+
+          {/* Expand/Collapse button */}
+          {hiddenCount > 0 && (
+            <button
+              type="button"
+              onClick={toggleExpand}
+              aria-expanded={isExpanded}
+              className="flex items-center gap-2 px-[16px] py-[8px] text-[14px] font-medium text-[#4664DC] cursor-pointer bg-transparent border-none hover:text-[#3D58CC] transition-colors duration-200"
+            >
+              <span>
+                {isExpanded ? 'Show less' : `+${hiddenCount} more file${hiddenCount > 1 ? 's' : ''}`}
+              </span>
+              <svg 
+                className={`w-4 h-4 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+          )}
         </div>
       )}
     </div>

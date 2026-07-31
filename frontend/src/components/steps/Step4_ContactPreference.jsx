@@ -61,7 +61,6 @@ const Step4_ContactPreference = () => {
       phoneNumber: step4Data.phoneNumber,
       currentCountry: step4Data.currentCountry,
       studyDestinations: step4Data.studyDestinations,
-      privacyPolicyAccepted: step4Data.privacyPolicyAccepted || false,
     },
     mode: 'onBlur',
   });
@@ -287,33 +286,6 @@ const Step4_ContactPreference = () => {
               <p className="mt-2 text-[13px] text-red-500">{errors.studyDestinations.message}</p>
             )}
           </div>
-        </div>
-      )}
-
-      {/* Privacy Policy Checkbox - shown in BOTH Yes and No flows */}
-      {contactPreference && (
-        <div className="mt-6">
-          <label className="flex items-start cursor-pointer">
-            <input
-              type="checkbox"
-              {...register('privacyPolicyAccepted')}
-              className="h-[16px] w-[16px] mt-[3px] text-blue-600 border-gray-400 rounded focus:ring-blue-500 focus:ring-2 focus:outline-none flex-shrink-0"
-            />
-            <span className="ml-3 text-[#333333] font-normal text-[14px] leading-[21px] tracking-normal">
-              I have read and accept the{' '}
-              <a href="https://www.idp.com/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-[#2563eb] underline">
-                Privacy Policy
-              </a>{' '}
-              and{' '}
-              <a href="https://www.idp.com/terms" target="_blank" rel="noopener noreferrer" className="text-[#2563eb] underline">
-                Terms of Use
-              </a>
-              . <span className="text-[#EF4444]">*</span>
-            </span>
-          </label>
-          {errors.privacyPolicyAccepted && (
-            <p className="mt-1 ml-[28px] text-[13px] text-red-500">{errors.privacyPolicyAccepted.message}</p>
-          )}
         </div>
       )}
 

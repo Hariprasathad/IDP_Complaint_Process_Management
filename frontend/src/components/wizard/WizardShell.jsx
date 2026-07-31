@@ -2,13 +2,17 @@ import React from 'react';
 import useWizardStore from '../../store/wizardStore';
 import ProgressBar from './ProgressBar';
 import NavigationButtons from './NavigationButtons';
-import Step1_ComplaintDetails from '../steps/Step1_ComplaintDetails';
-import Step2_IncidentLocation from '../steps/Step2_IncidentLocation';
-import Step3_WhoIsLodging from '../steps/Step3_WhoIsLodging';
-import Step4_ContactPreference from '../steps/Step4_ContactPreference';
+import Step1_ComplaintDetails from '../steps/Step1ComplaintDetails';
+import Step2_IncidentLocation from '../steps/Step2IncidentLocation';
+import Step3_WhoIsLodging from '../steps/Step3ComplainantType';
+import Step4_ContactPreference from '../steps/Step4ContactPreference';
 import ConfirmationScreen from '../steps/ConfirmationScreen';
+import { useCountries } from '../../hooks/useCountries';
 
 const WizardShell = () => {
+  // Prefetch countries as soon as wizard loads (Step 1)
+  useCountries();
+
   const currentStep = useWizardStore((state) => state.currentStep);
   const isSubmitting = useWizardStore((state) => state.isSubmitting);
   const privacyAccepted = useWizardStore((state) => state.formData.privacyPolicyAccepted);

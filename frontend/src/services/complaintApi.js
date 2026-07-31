@@ -55,11 +55,36 @@ export const uploadFileToS3 = async (uploadUrl, file, onProgress) => {
 
 /**
  * Get country list for dropdowns.
+ * Uses mock data until backend is ready.
  * @returns {Promise<Array<{code: string, name: string, phoneCode: string}>>}
  */
 export const getCountries = async () => {
-  const response = await apiClient.get('/master-data/countries');
-  return response.data.countries;
+  // Mock data for development — replace with real API when backend is ready
+  // const response = await apiClient.get('/master-data/countries');
+  // return response.data.countries;
+  
+  await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate network delay
+  return [
+    { code: 'AU', name: 'Australia', phoneCode: '+61' },
+    { code: 'IN', name: 'India', phoneCode: '+91' },
+    { code: 'GB', name: 'United Kingdom', phoneCode: '+44' },
+    { code: 'US', name: 'United States', phoneCode: '+1' },
+    { code: 'CA', name: 'Canada', phoneCode: '+1' },
+    { code: 'NZ', name: 'New Zealand', phoneCode: '+64' },
+    { code: 'SG', name: 'Singapore', phoneCode: '+65' },
+    { code: 'MY', name: 'Malaysia', phoneCode: '+60' },
+    { code: 'PH', name: 'Philippines', phoneCode: '+63' },
+    { code: 'LK', name: 'Sri Lanka', phoneCode: '+94' },
+    { code: 'BD', name: 'Bangladesh', phoneCode: '+880' },
+    { code: 'NP', name: 'Nepal', phoneCode: '+977' },
+    { code: 'PK', name: 'Pakistan', phoneCode: '+92' },
+    { code: 'VN', name: 'Vietnam', phoneCode: '+84' },
+    { code: 'TH', name: 'Thailand', phoneCode: '+66' },
+    { code: 'ID', name: 'Indonesia', phoneCode: '+62' },
+    { code: 'CN', name: 'China', phoneCode: '+86' },
+    { code: 'JP', name: 'Japan', phoneCode: '+81' },
+    { code: 'KR', name: 'South Korea', phoneCode: '+82' },
+  ];
 };
 
 /**

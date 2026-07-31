@@ -128,7 +128,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
       
       {/* Upload area */}
       <div 
-        className={`w-full min-h-[140px] rounded-[10px] bg-[#FAFBFC] text-center cursor-pointer transition-colors flex flex-col items-center justify-center mt-4 py-[24px] flex-shrink-0 ${
+        className={`w-full min-h-[140px] rounded-[10px] bg-[#FAFBFC] text-center transition-colors flex flex-col items-center justify-center mt-4 py-[24px] flex-shrink-0 ${
           isDragging ? 'bg-blue-50' : ''
         }`}
         style={{
@@ -137,7 +137,6 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        onClick={handleClick}
       >
         <input 
           type="file" 
@@ -153,7 +152,7 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
           </svg>
           <p className="text-[15px] font-medium leading-[15px] tracking-normal text-[#333333]">
-            Drag files here or <span className="text-[#2563eb] underline decoration-solid cursor-pointer">Browse</span>
+            Drag files here or <span onClick={handleClick} className="text-[#2563eb] underline decoration-solid cursor-pointer">Browse</span>
           </p>
           <p className="text-[12px] font-normal leading-[12px] tracking-normal text-[#9AA1AB]">
             PDF, DOC, DOCX, JPG, JPEG, PNG — max {maxFiles} files, {maxSizeMB} MB each
@@ -183,10 +182,14 @@ const FileUploader = ({ label, maxFiles = 10, maxSizeMB = 10 }) => {
                   href={file.file ? URL.createObjectURL(file.file) : '#'}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#2563EB] text-[14px] font-normal leading-[20px] no-underline hover:underline overflow-hidden text-ellipsis whitespace-nowrap cursor-pointer"
+                  className="text-[#2563EB] text-[14px] font-normal leading-[20px] no-underline hover:underline cursor-pointer"
                   onClick={(e) => e.stopPropagation()}
                 >
-                  {file.name}
+                  {(() => {
+                    const ext = file.name.lastIndexOf('.') > 0 ? file.name.substring(file.name.lastIndexOf('.')) : '';
+                    const name = file.name.lastIndexOf('.') > 0 ? file.name.substring(0, file.name.lastIndexOf('.')) : file.name;
+                    return name.length > 30 ? name.substring(0, 30) + '...' + ext : file.name;
+                  })()}
                 </a>
               </div>
               <button

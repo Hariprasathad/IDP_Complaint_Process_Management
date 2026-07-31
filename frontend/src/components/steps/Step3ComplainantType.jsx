@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import useWizardStore from '../../store/wizardStore';
 import { step3Schema } from '../../validation/step3Schema';
 
 const Step3_WhoIsLodging = () => {
-  const step3Data = useWizardStore((state) => state.formData);
+  const formData = useWizardStore((state) => state.formData);
   const saveStep3 = useWizardStore((state) => state.saveStep3);
   const goNext = useWizardStore((state) => state.goNext);
 
@@ -24,16 +24,24 @@ const Step3_WhoIsLodging = () => {
   } = useForm({
     resolver: yupResolver(step3Schema),
     defaultValues: {
-      complainantType: step3Data.complainantType,
-      complainantTypeOther: step3Data.complainantTypeOther,
+      complainantType: formData.complainantType,
+      complainantTypeOther: formData.complainantTypeOther,
     },
     mode: 'onBlur',
   });
 
-  const complainantType = watch('complainantType');
+  // Auto-save to Zustand on every change
+  const watchedFields = watch();
+  useEffect(() => {
+    saveStep3({
+      complainantType: watchedFields.complainantType,
+      complainantTypeOther: watchedFields.complainantTypeOther,
+    });
+  }, [watchedFields.complainantType, watchedFields.complainantTypeOther, saveStep3]);
 
-  const onSubmit = (data) => {
-    saveStep3(data);
+  const complainantType = watchedFields.complainantType;
+
+  const onSubmit = () => {
     goNext();
   };
 
@@ -59,12 +67,10 @@ const Step3_WhoIsLodging = () => {
         ))}
       </div>
 
-      {/* Validation error for radio group */}
       {errors.complainantType && (
         <p className="mt-3 text-[13px] text-red-500">{errors.complainantType.message}</p>
       )}
 
-      {/* Other - Please Specify input */}
       {complainantType === 'other' && (
         <div className="mt-3 ml-[30px]">
           <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">

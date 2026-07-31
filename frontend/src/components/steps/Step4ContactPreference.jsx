@@ -6,36 +6,20 @@ import { step4Schema } from '../../validation/step4Schema';
 import { submitComplaint } from '../../services/complaintApi';
 
 const Step4_ContactPreference = () => {
-  const step4Data = useWizardStore((state) => state.formData);
+  const formData = useWizardStore((state) => state.formData);
   const saveStep4 = useWizardStore((state) => state.saveStep4);
   const setSubmitting = useWizardStore((state) => state.setSubmitting);
   const submitComplete = useWizardStore((state) => state.submitComplete);
   const getFormPayload = useWizardStore((state) => state.getFormPayload);
+  const countries = useWizardStore((state) => state.countries);
 
-  const countryCodeOptions = [
-    { value: '+61', label: '+61 (Australia)' },
-    { value: '+44', label: '+44 (UK)' },
-    { value: '+1', label: '+1 (US/Canada)' },
-    { value: '+91', label: '+91 (India)' },
-    { value: '+852', label: '+852 (Hong Kong)' },
-    { value: '+353', label: '+353 (Ireland)' },
-    { value: '+60', label: '+60 (Malaysia)' },
-    { value: '+64', label: '+64 (New Zealand)' },
-    { value: '+65', label: '+65 (Singapore)' },
-  ];
+  const countryCodeOptions = countries
+    .filter(c => c.phoneCode)
+    .map(c => ({ value: c.phoneCode, label: `${c.phoneCode} (${c.name})` }));
 
-  const countryOptions = [
-    { value: 'AU', label: 'Australia' },
-    { value: 'UK', label: 'United Kingdom' },
-    { value: 'US', label: 'United States' },
-    { value: 'CA', label: 'Canada' },
-    { value: 'IN', label: 'India' },
-    { value: 'HK', label: 'Hong Kong' },
-    { value: 'IE', label: 'Ireland' },
-    { value: 'MY', label: 'Malaysia' },
-    { value: 'NZ', label: 'New Zealand' },
-    { value: 'SG', label: 'Singapore' },
-  ];
+  const countryOptions = countries
+    .filter(c => c.code !== 'ONLINE')
+    .map(c => ({ value: c.code, label: c.name }));
 
   const studyDestinationOptions = [
     'Australia', 'Canada', 'Hong Kong', 'Ireland',
@@ -54,43 +38,58 @@ const Step4_ContactPreference = () => {
   } = useForm({
     resolver: yupResolver(step4Schema),
     defaultValues: {
-      contactPreference: step4Data.contactPreference,
-      fullName: step4Data.fullName,
-      emailAddress: step4Data.emailAddress,
-      countryCode: step4Data.countryCode,
-      phoneNumber: step4Data.phoneNumber,
-      currentCountry: step4Data.currentCountry,
-      studyDestinations: step4Data.studyDestinations,
+      contactPreference: formData.contactPreference,
+      fullName: formData.fullName,
+      emailAddress: formData.emailAddress,
+      countryCode: formData.countryCode,
+      phoneNumber: formData.phoneNumber,
+      currentCountry: formData.currentCountry,
+      studyDestinations: formData.studyDestinations,
     },
     mode: 'onBlur',
   });
 
-  const contactPreference = watch('contactPreference');
+  // Auto-save all fields to Zustand on every change
+  const watchedFields = watch();
+  useEffect(() => {
+    saveStep4({
+      contactPreference: watchedFields.contactPreference,
+      fullName: watchedFields.fullName,
+      emailAddress: watchedFields.emailAddress,
+      countryCode: watchedFields.countryCode,
+      phoneNumber: watchedFields.phoneNumber,
+      currentCountry: watchedFields.currentCountry,
+      studyDestinations: watchedFields.studyDestinations,
+    });
+  }, [
+    watchedFields.contactPreference,
+    watchedFields.fullName,
+    watchedFields.emailAddress,
+    watchedFields.countryCode,
+    watchedFields.phoneNumber,
+    watchedFields.currentCountry,
+    watchedFields.studyDestinations,
+    saveStep4,
+  ]);
 
+  const contactPreference = watchedFields.contactPreference;
   const prevContactPref = useRef(contactPreference);
 
   useEffect(() => {
-    // Only reset when switching FROM yes TO no
     if (prevContactPref.current === 'yes' && contactPreference === 'no') {
-      // Reset all Yes-flow fields to empty/default
       setValue('fullName', '');
       setValue('emailAddress', '');
       setValue('countryCode', '');
       setValue('phoneNumber', '');
       setValue('currentCountry', '');
       setValue('studyDestinations', []);
-
-      // Clear all validation errors for Yes-flow fields
       clearErrors(['fullName', 'emailAddress', 'countryCode', 'phoneNumber', 'currentCountry', 'studyDestinations']);
     }
     prevContactPref.current = contactPreference;
   }, [contactPreference, setValue, clearErrors]);
 
-  const onSubmit = async (data) => {
-    // Save step 4 data to Zustand
-    saveStep4(data);
-
-    // Submit to API
+  const onSubmit = async () => {
+    // Data already saved to Zustand — just submit
     try {
       setSubmitting(true);
       const payload = getFormPayload();
@@ -99,7 +98,6 @@ const Step4_ContactPreference = () => {
     } catch (error) {
       console.error('Submission failed:', error);
       setSubmitting(false);
-      // TODO: Display error notification to user
     }
   };
 
@@ -288,7 +286,6 @@ const Step4_ContactPreference = () => {
           </div>
         </div>
       )}
-
     </form>
   );
 };

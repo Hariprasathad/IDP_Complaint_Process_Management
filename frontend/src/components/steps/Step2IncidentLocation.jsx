@@ -1,26 +1,20 @@
-import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import useWizardStore from '../../store/wizardStore';
 import { step2Schema } from '../../validation/step2Schema';
+import LoadingSpinner from '../ui/LoadingSpinner';
 
 const Step2_IncidentLocation = () => {
-  const step2Data = useWizardStore((state) => state.formData);
+  const formData = useWizardStore((state) => state.formData);
   const saveStep2 = useWizardStore((state) => state.saveStep2);
   const goNext = useWizardStore((state) => state.goNext);
+  const countries = useWizardStore((state) => state.countries);
+  const loading = useWizardStore((state) => state.countriesLoading);
 
-  const countryOptions = [
-    { value: 'AU', label: 'Australia' },
-    { value: 'UK', label: 'United Kingdom' },
-    { value: 'US', label: 'United States' },
-    { value: 'CA', label: 'Canada' },
-    { value: 'IN', label: 'India' },
-    { value: 'HK', label: 'Hong Kong' },
-    { value: 'IE', label: 'Ireland' },
-    { value: 'MY', label: 'Malaysia' },
-    { value: 'NZ', label: 'New Zealand' },
-    { value: 'SG', label: 'Singapore' },
-  ];
+  const countryOptions = countries
+    .filter(c => c.code !== 'ONLINE')
+    .map(c => ({ value: c.code, label: c.name }));
 
   const {
     register,
@@ -30,20 +24,25 @@ const Step2_IncidentLocation = () => {
   } = useForm({
     resolver: yupResolver(step2Schema),
     defaultValues: {
-      country: step2Data.country,
-      office: step2Data.office,
-      isOnline: step2Data.isOnline,
-      isOther: step2Data.isOther,
-      onlineSpecify: step2Data.onlineSpecify,
+      country: formData.country,
+      office: formData.office,
+      isOnline: formData.isOnline,
+      isOther: formData.isOther,
+      onlineSpecify: formData.onlineSpecify,
     },
     mode: 'onBlur',
   });
 
-  const isOnline = watch('isOnline');
-  const isOther = watch('isOther');
+  // Auto-save all fields to Zustand on every change
+  const watchedFields = watch();
+  useEffect(() => {
+    saveStep2(watchedFields);
+  }, [watchedFields.country, watchedFields.office, watchedFields.isOnline, watchedFields.isOther, watchedFields.onlineSpecify, saveStep2]);
 
-  const onSubmit = (data) => {
-    saveStep2(data);
+  const isOnline = watchedFields.isOnline;
+  const isOther = watchedFields.isOther;
+
+  const onSubmit = () => {
     goNext();
   };
 
@@ -59,6 +58,9 @@ const Step2_IncidentLocation = () => {
           <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
             Country <span className="text-[#EF4444]">*</span>
           </label>
+          {loading ? (
+            <LoadingSpinner message="Loading countries..." />
+          ) : (
           <div className="relative">
             <select
               {...register('country')}
@@ -77,6 +79,7 @@ const Step2_IncidentLocation = () => {
               </svg>
             </div>
           </div>
+          )}
           {errors.country && (
             <p className="mt-1 text-[13px] text-red-500">{errors.country.message}</p>
           )}
@@ -108,7 +111,6 @@ const Step2_IncidentLocation = () => {
             Other
           </span>
 
-          {/* Online checkbox */}
           <div className="mb-3">
             <label className="flex items-center cursor-pointer">
               <input
@@ -122,7 +124,6 @@ const Step2_IncidentLocation = () => {
             </label>
           </div>
 
-          {/* Other checkbox */}
           <div>
             <label className="flex items-center cursor-pointer">
               <input
@@ -140,9 +141,6 @@ const Step2_IncidentLocation = () => {
         {/* Please Specify field */}
         {(isOnline || isOther) && (
           <div className="ml-7">
-            <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
-              Please Specify <span className="text-[#EF4444]">*</span>
-            </label>
             <input
               type="text"
               {...register('onlineSpecify')}

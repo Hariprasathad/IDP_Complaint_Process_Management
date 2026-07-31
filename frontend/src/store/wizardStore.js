@@ -42,6 +42,11 @@ const initialState = {
   isSubmitting: false,
   complaintId: null,
   formData: { ...initialFormData },
+
+  // Master data (fetched on app load)
+  countries: [],
+  countriesLoading: true,
+  countriesError: null,
 };
 
 const useWizardStore = create((set, get) => ({
@@ -132,7 +137,12 @@ const useWizardStore = create((set, get) => ({
   },
 
   // --- Reset ---
-  reset: () => set({ ...initialState, formData: { ...initialFormData } }),
+  reset: () => set({ ...initialState, formData: { ...initialFormData }, countries: get().countries, countriesLoading: false, countriesError: null }),
+
+  // --- Master Data ---
+  setCountries: (countries) => set({ countries, countriesLoading: false, countriesError: null }),
+  setCountriesLoading: (loading) => set({ countriesLoading: loading }),
+  setCountriesError: (error) => set({ countriesError: error, countriesLoading: false }),
 }));
 
 export default useWizardStore;

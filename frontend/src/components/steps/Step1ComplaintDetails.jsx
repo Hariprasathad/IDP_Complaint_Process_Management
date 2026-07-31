@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import useWizardStore from '../../store/wizardStore';
@@ -8,7 +8,7 @@ import FileUploader from '../form/FileUploader';
 const MAX_DESCRIPTION_LENGTH = 5000;
 
 const Step1_ComplaintDetails = () => {
-  const step1Data = useWizardStore((state) => state.formData);
+  const formData = useWizardStore((state) => state.formData);
   const saveStep1 = useWizardStore((state) => state.saveStep1);
   const goNext = useWizardStore((state) => state.goNext);
   const [isFocused, setIsFocused] = useState(false);
@@ -21,15 +21,19 @@ const Step1_ComplaintDetails = () => {
   } = useForm({
     resolver: yupResolver(step1Schema),
     defaultValues: {
-      description: step1Data.description,
+      description: formData.description,
     },
     mode: 'onBlur',
   });
 
+  // Auto-save to Zustand on every change
   const descriptionValue = watch('description') || '';
+  useEffect(() => {
+    saveStep1({ description: descriptionValue });
+  }, [descriptionValue, saveStep1]);
 
-  const onSubmit = (data) => {
-    saveStep1({ description: data.description });
+  const onSubmit = () => {
+    // Data already saved — just navigate
     goNext();
   };
 
@@ -62,7 +66,7 @@ const Step1_ComplaintDetails = () => {
         }`}
       />
 
-      {/* Counter + Validation — fixed height to prevent layout shift */}
+      {/* Counter + Validation */}
       <div className="flex justify-between items-start mt-[2px] min-h-[14px]">
         <div>
           {errors.description && (

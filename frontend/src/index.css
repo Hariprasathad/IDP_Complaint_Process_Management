@@ -1,7 +1,11 @@
 @import "tailwindcss";
 
-/* Design tokens for IDP Complaint Wizard */
+/* IDP Breakpoints */
 @theme {
+  --breakpoint-sm: 700px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1200px;
+
   /* Brand colors */
   --color-brand-blue: #2563eb;
   --color-brand-blue-dark: #1d4ed8;

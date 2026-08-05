@@ -135,25 +135,25 @@ const Step2_IncidentLocation = () => {
                 Other - Please Specify
               </span>
             </label>
-          </div>
-        </div>
 
-        {/* Please Specify field */}
-        {(isOnline || isOther) && (
-          <div className="ml-7">
-            <input
-              type="text"
-              {...register('onlineSpecify')}
-              placeholder="Please specify"
-              className={`w-full h-[41px] px-[12px] py-[10px] border rounded-[4px] bg-white text-[14px] leading-[21px] font-normal text-[#333333] placeholder:text-[#9AA1AB] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] outline-none focus:border-[#5C656E] ${
-                errors.onlineSpecify ? 'border-red-500' : 'border-[#5C656E]'
-              }`}
-            />
-            {errors.onlineSpecify && (
-              <p className="mt-1 text-[13px] text-red-500">{errors.onlineSpecify.message}</p>
+            {/* Please Specify field */}
+            {(isOnline || isOther) && (
+              <div className="mt-[6px] ml-7">
+                <input
+                  type="text"
+                  {...register('onlineSpecify')}
+                  placeholder="Please specify"
+                  className={`w-full h-[41px] px-[12px] py-[10px] border rounded-[4px] bg-white text-[14px] leading-[21px] font-normal text-[#333333] placeholder:text-[#9AA1AB] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)] outline-none focus:border-[#5C656E] ${
+                    errors.onlineSpecify ? 'border-red-500' : 'border-[#5C656E]'
+                  }`}
+                />
+                {errors.onlineSpecify && (
+                  <p className="mt-1 text-[13px] text-red-500">{errors.onlineSpecify.message}</p>
+                )}
+              </div>
             )}
           </div>
-        )}
+        </div>
       </div>
     </form>
   );

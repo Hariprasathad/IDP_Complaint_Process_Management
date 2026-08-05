@@ -47,11 +47,11 @@ const Step3_WhoIsLodging = () => {
 
   return (
     <form id="step3-form" onSubmit={handleSubmit(onSubmit)} className="w-full">
-      <h2 className="text-[16px] font-semibold leading-[24px] tracking-normal text-[#333333] mb-5">
+      <h2 className="text-[16px] font-semibold leading-[24px] tracking-normal text-[#333333] mb-[12px]">
         Which of the following best describes you? <span className="text-[#EF4444]">*</span>
       </h2>
 
-      <div className="flex flex-col gap-[16px]">
+      <div className="flex flex-col gap-[6px]">
         {options.map((option) => (
           <label key={option.value} className="flex items-center cursor-pointer">
             <input
@@ -72,10 +72,7 @@ const Step3_WhoIsLodging = () => {
       )}
 
       {complainantType === 'other' && (
-        <div className="mt-3 ml-[30px]">
-          <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
-            Please Specify <span className="text-[#EF4444]">*</span>
-          </label>
+        <div className="mt-[6px] ml-[30px]">
           <input
             type="text"
             {...register('complainantTypeOther')}

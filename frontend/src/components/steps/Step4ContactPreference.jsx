@@ -108,7 +108,7 @@ const Step4_ContactPreference = () => {
       </h2>
 
       {/* Yes / No Radio */}
-      <div className="mt-4 space-y-4">
+      <div className="mt-[12px] flex flex-col gap-[6px]">
         {[{ value: 'yes', label: 'Yes' }, { value: 'no', label: 'No' }].map((option) => (
           <label key={option.value} className="flex items-start cursor-pointer">
             <div className="flex items-center h-6">
@@ -173,8 +173,8 @@ const Step4_ContactPreference = () => {
           </div>
 
           {/* Phone: Country Code + Number */}
-          <div className="flex gap-4">
-            <div className="w-[180px]">
+          <div className="flex flex-col sm:flex-row gap-4">
+            <div className="w-full sm:w-[180px]">
               <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
                 Country code <span className="text-[#EF4444]">*</span>
               </label>
@@ -258,7 +258,7 @@ const Step4_ContactPreference = () => {
               name="studyDestinations"
               control={control}
               render={({ field }) => (
-                <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
                   {studyDestinationOptions.map((destination) => (
                     <label key={destination} className="flex items-center cursor-pointer">
                       <input

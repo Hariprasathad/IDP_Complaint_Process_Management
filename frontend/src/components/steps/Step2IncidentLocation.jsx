@@ -86,10 +86,9 @@ const Step2_IncidentLocation = () => {
         </div>
 
         {/* Office */}
-        {!isOnline && (
-          <div>
+        <div>
             <label className="block text-[#333333] font-medium text-[14px] leading-[21px] tracking-normal mb-1">
-              Office <span className="text-[#EF4444]">*</span>
+              Office
             </label>
             <input
               type="text"
@@ -103,7 +102,6 @@ const Step2_IncidentLocation = () => {
               <p className="mt-1 text-[13px] text-red-500">{errors.office.message}</p>
             )}
           </div>
-        )}
 
         {/* Other section */}
         <div>
@@ -137,7 +135,7 @@ const Step2_IncidentLocation = () => {
             </label>
 
             {/* Please Specify field */}
-            {(isOnline || isOther) && (
+            {isOther && (
               <div className="mt-[6px] ml-7">
                 <input
                   type="text"
@@ -154,6 +152,11 @@ const Step2_IncidentLocation = () => {
             )}
           </div>
         </div>
+
+        {/* Form-level error: at least one location must be provided */}
+        {errors[''] && (
+          <p className="text-[13px] text-red-500">{errors[''].message}</p>
+        )}
       </div>
     </form>
   );
